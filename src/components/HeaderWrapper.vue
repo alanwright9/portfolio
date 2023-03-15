@@ -13,7 +13,7 @@ import NavBar from './HeaderWrapper/NavBar.vue'
   </header>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 
 header {
   background-color: var(--color-background-1);
@@ -21,7 +21,7 @@ header {
 
 .header_wrapper {
   line-height: 1.5;
-  max-width: var(--screen-width);
+  max-width: @maxContentWidth;
   padding: var(--pad);
   margin: 0 auto;
   overflow: auto;
