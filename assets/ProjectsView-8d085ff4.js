@@ -1,0 +1,1 @@
+import{_ as e,o as s,c,a as o}from"./index-bdb8ecec.js";const t={},_={class:"main_view"},n=o("h1",null,"Projects",-1),a=[n];function r(i,d){return s(),c("div",_,a)}const f=e(t,[["render",r]]);export{f as default};

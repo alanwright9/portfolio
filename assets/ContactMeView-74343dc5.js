@@ -1,1 +1,0 @@
-import{_ as e,o as t,c,a as o}from"./index-c88c4dca.js";const s={},n={class:"main_view"},a=o("h1",null,"Contact Me",-1),_=[a];function r(i,d){return t(),c("div",n,_)}const f=e(s,[["render",r]]);export{f as default};
