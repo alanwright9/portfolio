@@ -23,7 +23,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 
 .link {
   display: flex;
@@ -39,7 +39,7 @@ h3 {
   line-height: 24px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: @mobileWidth) {
   h3 {
     display: none;
   }

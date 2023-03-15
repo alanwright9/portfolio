@@ -80,7 +80,6 @@
 
 :root {
   --pad: max(20px, 4vmin);
-  --screen-width: 1600px;
 }
 
 body {

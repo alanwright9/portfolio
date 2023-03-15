@@ -37,10 +37,10 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 
 .main_wrapper {
-  max-width: var(--screen-width);
+  max-width: @maxContentWidth;
   padding: 0 var(--pad);
   align-items: center;
   text-align: center;

@@ -16,6 +16,8 @@ nav {
   text-align: left;
   font-size: 1rem;
   margin-top: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 nav a.router-link-exact-active {
