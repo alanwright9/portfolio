@@ -1,0 +1,1 @@
+import{_ as e,o,c as t,a as s}from"./index-514b9adf.js";const c={},_={class:"main_view"},n=s("h1",null,"About",-1),a=[n];function r(i,d){return o(),t("div",_,a)}const f=e(c,[["render",r]]);export{f as default};
