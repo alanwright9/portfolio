@@ -1,9 +1,3 @@
-<script setup>
-import Profile from './HeaderWrapper/Profile.vue'
-import NavBar from './HeaderWrapper/NavBar.vue'
-import Socials from './HeaderWrapper/Socials.vue'
-</script>
-
 <template>
   <header>
     <div class="header_wrapper">
@@ -13,6 +7,12 @@ import Socials from './HeaderWrapper/Socials.vue'
     </div>
   </header>
 </template>
+
+<script setup>
+import Profile from './HeaderWrapper/Profile.vue'
+import NavBar from './HeaderWrapper/NavBar.vue'
+import Socials from './HeaderWrapper/Socials.vue'
+</script>
 
 <style lang="less" scoped>
 

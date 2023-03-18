@@ -1,7 +1,3 @@
-<script setup>
-  import { RouterLink } from 'vue-router'
-</script>
-
 <template>
   <nav>
     <RouterLink class="navlink" v-for="route in $router.getRoutes()" v-bind:to=route.path>
@@ -9,6 +5,10 @@
     </RouterLink>
   </nav>
 </template>
+
+<script setup>
+  import { RouterLink } from 'vue-router'
+</script>
 
 <style>
 

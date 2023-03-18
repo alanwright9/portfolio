@@ -1,10 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-import { RouterView } from 'vue-router'
-
-import ParticleBackground from './MainWrapper/ParticleBackground.vue'
-</script>
-
 <template>
   <main>
     <div class="main_wrapper">
@@ -22,10 +15,20 @@ import ParticleBackground from './MainWrapper/ParticleBackground.vue'
 
 <script>
 
+import { ref } from 'vue'
+import { RouterView } from 'vue-router'
+
+import ParticleBackground from './MainWrapper/ParticleBackground.vue'
+
 const defaultTransition = "fade-in"
 const navTransition = "slide"
 
 export default {
+  
+  components: {
+    ParticleBackground
+  },
+
   data() {
     return {
       transitionName: ref(defaultTransition),
@@ -33,18 +36,22 @@ export default {
       headerHeight: 0
     }
   },
+
   mounted() {
     this.calculateHeaderHeight()
     window.addEventListener('resize', this.calculateHeaderHeight);
   },
+
   unmounted() {
     window.removeEventListener('resize', this.calculateHeaderHeight);
   },
+
   methods: {
     calculateHeaderHeight() {
       this.headerHeight = document.getElementsByTagName("header")[0].offsetHeight
     }
   },
+
   watch: {
     $route(to, from) {
       this.transitionName = from.meta.id == undefined ? defaultTransition : navTransition

@@ -1,10 +1,3 @@
-<script setup>
-import { loadFull } from "tsparticles"
-import { gsap } from 'gsap'
-
-const jsonParticles = new URL(`../../assets/json/particles.json`, import.meta.url).href
-</script>
-
 <template>
   <Particles
     id="tsparticles"
@@ -15,20 +8,37 @@ const jsonParticles = new URL(`../../assets/json/particles.json`, import.meta.ur
 
 <script>
 
+import { loadFull } from "tsparticles"
+import { gsap } from 'gsap'
+
 export default {
 
   props: {
+    // Horizontal 1-dimensional grid representing where we are located
+    // to determine how far and in what direction to shift the particles
     scroll_pos: {
       type: Number,
       default: -1
     },
+
+    // Speed at which the particles fly
     scroll_speed: {
       type: Number,
       default: 100
     },
+
+    // Time (in seconds) to slow back down to 0
     scroll_time: {
       type: Number,
       default: 1
+    }
+  },
+
+  setup() {
+    // Import our particles asset
+    const jsonParticles = new URL(`../../assets/json/particles.json`, import.meta.url).href
+    return {
+      jsonParticles
     }
   },
 
@@ -41,7 +51,7 @@ export default {
     // If our scroll position has changed, send the particles flying
     // based on how far it changed
     scroll_pos(to, from) {
-      if (from >= 0 && from != to) {
+      if (from != -1 && from != to) {
         this.flyBackground(this.scroll_speed * (from-to), this.scroll_time)
       }
     }
@@ -52,8 +62,7 @@ export default {
     // Sends all the particles flying horizontally to the right (or left if negative)
     // at the specified speed and time (seconds)
     flyBackground(speed, time) {
-      this.velocity = speed;
-      gsap.to(this, {duration: time, velocity: 0, overwrite: true})
+      gsap.fromTo(this, {velocity: speed}, {duration: time, velocity: 0, overwrite: true})
     },
 
     // Called when particles need initiating
@@ -64,10 +73,9 @@ export default {
       // fast they should be flying due to a webpage change
       main.addParticleUpdater("flyControl", () => {
         return {
-          init: () => {
-          },
+          init: () => {},
           update: (particle) => {
-            particle.velocity.x = particle.initialVelocity.x + this.velocity;
+            particle.velocity.x = particle.initialVelocity.x + this.velocity
           }
         }
       })
@@ -75,7 +83,7 @@ export default {
 
     // Called once particles are loaded
     particlesLoaded(container) {
-      console.log("Particles container loaded", container);
+      console.log("Particles container loaded", container)
     },
   },
 }

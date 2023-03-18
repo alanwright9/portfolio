@@ -1,11 +1,3 @@
-<script setup>
-
-function getImageURL(name) {
-  return new URL(`../../../assets/img/social/${name}.svg`, import.meta.url).href
-}
-
-</script>
-
 <template>
   <a class="navlink" v-bind:href=data.url target="_blank">
       <img v-bind:src="getImageURL(data.img)" alt="" />
@@ -15,7 +7,13 @@ function getImageURL(name) {
 <script>
 
 export default {
-  props: ['data']
+  props: ['data'],
+
+  methods: {
+    getImageURL(name) {
+      return new URL(`../../../assets/img/social/${name}.svg`, import.meta.url).href
+    }
+  }
 }
 
 </script>
@@ -30,12 +28,7 @@ a {
 
 img {
   height: 24px;
-}
-
-@media (prefers-color-scheme: dark) {
-  img {
-    filter: invert(80%);
-  }
+  filter: invert(80%);
 }
 
 </style>

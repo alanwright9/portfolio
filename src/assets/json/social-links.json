@@ -1,15 +1,17 @@
-[ {
-  "name": "GitHub",
-  "img": "github",
-  "url": "https://github.com/Techtress"
-},
-{
-  "name": "LinkedIn",
-  "img": "linkedin",
-  "url": "https://www.linkedin.com/in/awrighttech"
-},
-{
-  "name": "Facebook",
-  "img": "facebook",
-  "url": "https://www.facebook.com/techtress"
-} ]
+[
+  {
+    "name": "GitHub",
+    "img": "github",
+    "url": "https://github.com/Techtress"
+  },
+  {
+    "name": "LinkedIn",
+    "img": "linkedin",
+    "url": "https://www.linkedin.com/in/awrighttech"
+  },
+  {
+    "name": "Facebook",
+    "img": "facebook",
+    "url": "https://www.facebook.com/techtress"
+  }
+]

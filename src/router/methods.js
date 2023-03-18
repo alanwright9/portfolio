@@ -1,4 +1,4 @@
-export class RouteHelper {
+export class StringHelper {
 
   // Check if a single character is upper case
   static isUpperCase(char) {
