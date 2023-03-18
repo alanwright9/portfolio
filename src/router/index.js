@@ -9,12 +9,14 @@ const router = createRouter({
 
 for (var i = 0; i < jsonPages.length; i++) {
   const page = jsonPages[i]
-  router.addRoute( {
-    path: RouteHelper.toPath(i, page.name),
-    name: RouteHelper.toDisplay(page.name),
-    component: () => import(`../views/${page.name}View.vue`),
-    meta: { id: i }
-  })
+
+  router.addRoute(
+    {
+      path: RouteHelper.toPath(i, page.name),
+      name: RouteHelper.toDisplay(page.name),
+      component: () => import(`../views/${page.name}View.vue`),
+      meta: { id: i }
+    })
 }
 
 export default router

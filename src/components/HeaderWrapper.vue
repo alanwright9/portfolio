@@ -7,15 +7,9 @@ import Socials from './HeaderWrapper/Socials.vue'
 <template>
   <header>
     <div class="header_wrapper">
-      <div class="header_item">
-        <Profile/>
-      </div>
-      <div class="header_item desktop">
-        <NavBar/>
-      </div>
-      <div class="header_item">
-        <Socials/>
-      </div>
+      <Profile/>
+      <NavBar class="desktop"/>
+      <Socials/>
     </div>
   </header>
 </template>
@@ -33,6 +27,7 @@ header {
 .header_wrapper {
   line-height: 1.5;
   max-width: @maxContentWidth;
+  
   padding: calc(var(--pad)/2) var(--pad);
   margin: 0 auto;
   overflow: auto;
@@ -40,10 +35,6 @@ header {
   align-items: center;
   display: flex;
   justify-content: space-between;
-}
-
-.header_item {
-  float: left;
 }
 
 </style>

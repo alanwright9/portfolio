@@ -4,5 +4,7 @@ import jsonSocials from '@/assets/json/social-links.json'
 </script>
 
 <template>
-  <SocialLink v-for="social in jsonSocials" v-bind:data=social />
+  <div>
+    <SocialLink v-for="social in jsonSocials" v-bind:data=social />
+  </div>
 </template>

@@ -3,8 +3,6 @@ import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 
 import ParticleBackground from './MainWrapper/ParticleBackground.vue'
-import HomeView from '../views/HomeView.vue'
-import ProjectsView from '../views/ProjectsView.vue'
 </script>
 
 <template>
@@ -105,7 +103,7 @@ main {
 }
 
 .slide-enter-from {
-  transform: translateX(calc(50% * v-bind(transitionDirection))) translateY(-20vh) scale(50%);
+  transform: translateX(calc(100% * v-bind(transitionDirection))) translateY(-20vh) scale(50%);
 }
 
 </style>
@@ -138,30 +136,25 @@ main {
 }*/
 
 .main_button {
-  /* design */
-  --spacing: 1.5rem;
-  --reverse-spacing: calc(100% - var(--spacing));
-  --button-polygon: polygon(0 0, var(--reverse-spacing) 0, 100% 50%, var(--reverse-spacing) 100%, 0% 100%, var(--spacing) 50%);
-  -webkit-clip-path: var(--button-polygon);
-  clip-path: var(--button-polygon);
-  transition: 0.4s;
-}
-
-.main_button {
   /* properties */
-  color: var(--color-text);
-  background: var(--color-background-2);
-  
   margin: 0;
   padding: calc(var(--pad)*0.5) calc(var(--pad)*2);
   text-align: center;
   overflow: auto;
   display: inline-block;
-}
 
-.main_button_border {
-  filter: drop-shadow(0 0 1px #5cd9ff);
-  /*background: -webkit-linear-gradient(-90deg,#5cd9ff 0%,#249abe 50%,#00536d 100%);*/
+  /* shape */
+  --spacing: 1.5rem;
+  --reverse-spacing: calc(100% - var(--spacing));
+  --button-polygon: polygon(0 0, var(--reverse-spacing) 0, 100% 50%, var(--reverse-spacing) 100%, 0% 100%, var(--spacing) 50%);
+
+  -webkit-clip-path: var(--button-polygon);
+  clip-path: var(--button-polygon);
+
+  /* color */
+  color: var(--color-text);
+  background: var(--color-background-2);
+  transition: 0.4s;
 }
 
 .main_button:hover {
@@ -170,8 +163,11 @@ main {
   transition: 0.1s;
 }
 
+.main_button_border {
+  filter: drop-shadow(0 0 1px #5cd9ff);
+}
+
 .main_button_border:hover {
-  /*background: -webkit-linear-gradient(-90deg,#367e94 0%, #ffffff 50%,#5cd9ff 100%);*/
   filter: drop-shadow(0 0 8px #5cd9ff);
 }
 

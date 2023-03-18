@@ -1,12 +1,14 @@
-[ {
-  "name": "Home"
-},
-{
-  "name": "Projects"
-},
-{
-  "name": "About"
-},
-{
-  "name": "ContactMe"
-} ]
+[
+  {
+    "name": "Home"
+  },
+  {
+    "name": "Projects"
+  },
+  {
+    "name": "About"
+  },
+  {
+    "name": "ContactMe"
+  }
+]

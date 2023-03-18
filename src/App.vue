@@ -9,7 +9,6 @@ import MainWrapper from './components/MainWrapper.vue'
 </template>
 
 <style lang="less">
-
 @media (max-width: @mobileWidth) {
   .desktop {
     display: none;
@@ -21,5 +20,4 @@ import MainWrapper from './components/MainWrapper.vue'
     display: none;
   }
 }
-
 </style>

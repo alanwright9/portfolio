@@ -1,3 +1,5 @@
 <template>
-  <h1>Contact Me</h1>
+  <div class="main_left">
+    <h1>Contact Me</h1>
+  </div>
 </template>
