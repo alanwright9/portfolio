@@ -5,7 +5,7 @@ import RouterButton from '../components/MainWrapper/RouterButton.vue'
 <template>
   <div class="main_left">
     <h1>Welcome! I'm Alan</h1>
-    <h2>I specialize in front-end development using Vue.js</h2>
+    <h2>I specialize in Front-End Web Development using Vue.js</h2>
   </div>
   <hr>
   <div class="main_right">

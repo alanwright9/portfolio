@@ -20,7 +20,7 @@ export default {
   props: {
     scroll_pos: {
       type: Number,
-      default: 0
+      default: -1
     },
     scroll_speed: {
       type: Number,
@@ -28,45 +28,53 @@ export default {
     },
     scroll_time: {
       type: Number,
-      default: 1.0
+      default: 1
     }
   },
 
-  created() {
-    this.targetVelocity = 0.0
+  mounted() {
+    this.velocity = 0.0
   },
 
   watch: {
+
+    // If our scroll position has changed, send the particles flying
+    // based on how far it changed
     scroll_pos(to, from) {
-      if (from != to) {
-        this.sendBackground(this.scroll_speed * (from-to), this.scroll_time)
+      if (from >= 0 && from != to) {
+        this.flyBackground(this.scroll_speed * (from-to), this.scroll_time)
       }
     }
   },
 
   methods: {
 
-    sendBackground(speed, time) {
-      this.targetVelocity = speed;
-      gsap.to(this, {duration: time, targetVelocity: 0, overwrite: true})
+    // Sends all the particles flying horizontally to the right (or left if negative)
+    // at the specified speed and time (seconds)
+    flyBackground(speed, time) {
+      this.velocity = speed;
+      gsap.to(this, {duration: time, velocity: 0, overwrite: true})
     },
 
+    // Called when particles need initiating
     particlesInit(main) {
-      // Capture the tsParticles instance
       loadFull(main)
+
+      // Add an updater to change the speed of particles based on how
+      // fast they should be flying due to a webpage change
       main.addParticleUpdater("flyControl", () => {
         return {
           init: () => {
           },
           update: (particle) => {
-            particle.velocity.x = particle.initialVelocity.x + this.targetVelocity;
+            particle.velocity.x = particle.initialVelocity.x + this.velocity;
           }
         }
       })
     },
 
+    // Called once particles are loaded
     particlesLoaded(container) {
-      // Start the animation
       console.log("Particles container loaded", container);
     },
   },

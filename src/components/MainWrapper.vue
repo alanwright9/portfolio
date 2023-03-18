@@ -18,12 +18,6 @@ import ProjectsView from '../views/ProjectsView.vue'
           </div>
         </transition>
       </RouterView>
-      <!--<div class="main_view">
-        <HomeView />
-      </div>
-      <div class="main_view">
-        <ProjectsView />
-      </div>-->
     </div>
   </main>
 </template>

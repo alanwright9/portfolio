@@ -5,7 +5,7 @@
   "fpsLimit": 120,
   "detectRetina": false,
   "background": {
-    "color": "#070713"
+    "color": "#090909"
   },
   "particles": {
     "number": {
@@ -16,7 +16,7 @@
       "value": 15
     },
     "color": {
-      "value": "#130922"
+      "value": "#15152a"
     },
     "shape": {
       "type": "square"
