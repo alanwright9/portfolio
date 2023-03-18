@@ -1,16 +1,29 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
+
+import ParticleBackground from './MainWrapper/ParticleBackground.vue'
+import HomeView from '../views/HomeView.vue'
+import ProjectsView from '../views/ProjectsView.vue'
 </script>
 
 <template>
   <main>
     <div class="main_wrapper">
-      <RouterView v-slot="{ Component }">
+      <ParticleBackground :scroll_pos="$route.meta.id" :scroll_speed="50" :scroll_time="1.5"/>
+      <RouterView v-slot="{ Component, route }">
         <transition :name="transitionName">
-          <component :is="Component"/>
+          <div class="main_view" :key="route.name">
+            <component :is="Component"/>
+          </div>
         </transition>
       </RouterView>
+      <!--<div class="main_view">
+        <HomeView />
+      </div>
+      <div class="main_view">
+        <ProjectsView />
+      </div>-->
     </div>
   </main>
 </template>
@@ -24,13 +37,27 @@ export default {
   data() {
     return {
       transitionName: ref(defaultTransition),
-      transitionDirection: ref(1)
+      transitionDirection: ref(1),
+      headerHeight: 0
+    }
+  },
+  mounted() {
+    this.calculateHeaderHeight()
+    window.addEventListener('resize', this.calculateHeaderHeight);
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.calculateHeaderHeight);
+  },
+  methods: {
+    calculateHeaderHeight() {
+      this.headerHeight = document.getElementsByTagName("header")[0].offsetHeight
     }
   },
   watch: {
     $route(to, from) {
       this.transitionName = from.meta.id == undefined ? defaultTransition : navTransition
       this.transitionDirection = to.meta.id > from.meta.id ? 1 : -1;
+      console.log()
     }
   }
 }
@@ -39,18 +66,23 @@ export default {
 
 <style lang="less" scoped>
 
+main {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
 .main_wrapper {
   max-width: @maxContentWidth;
-  padding: 0 var(--pad);
-  align-items: center;
-  text-align: center;
-  margin: var(--pad) auto;
-  overflow: visible;
+  
+  /*padding: 0 var(--pad);*/
+  margin: 0 auto;
+  padding-top: calc(v-bind("headerHeight.toString() + 'px'") + var(--pad));
+  padding-bottom: var(--pad);
 
   display: grid;
 
-  --fade-speed: .3s;
-  --transform-speed: .3s;
+  --fade-time: .3s;
+  --transform-time: .3s;
 }
 
 .fade-in-leave-to,
@@ -58,24 +90,28 @@ export default {
 .slide-enter-from,
 .slide-leave-to {
   opacity: 0;
+  transform-origin: 50% 0;
 }
 
-.fade-in-enter-active,
-.fade-in-leave-active {
+.fade-in-enter-active {
   transition: opacity 1s ease-out;
+}
+
+.fade-in-leave-active {
+  display: none;
 }
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: opacity var(--fade-speed) ease-out, transform var(--transform-speed) ease-out;
-}
-
-.slide-enter-from {
-  transform: translateX(calc(100% * v-bind(transitionDirection))) scale(150%);
+  transition: opacity var(--fade-time) ease-out, transform var(--transform-time) ease-out;
 }
 
 .slide-leave-to {
-  transform: translateX(calc(-50% * v-bind(transitionDirection))) translateY(25vh) scale(50%);
+  transform: translateX(calc(-100% * v-bind(transitionDirection))) translateY(0vh) scale(200%);
+}
+
+.slide-enter-from {
+  transform: translateX(calc(50% * v-bind(transitionDirection))) translateY(-20vh) scale(50%);
 }
 
 </style>
@@ -84,17 +120,16 @@ export default {
 <style>
 
 .main_view {
-  /* design */
+  /* design 
   --border-size: var(--pad);
   --background-polygon: polygon(0 var(--border-size), var(--border-size) 0, 100% 0,
     100% calc(100% - var(--border-size)), calc(100% - var(--border-size)) 100%, 0 100%);
   -webkit-clip-path: var(--background-polygon);
   clip-path: var(--background-polygon);
-  background: var(--color-background);
+  background: var(--color-background); */
 
   /* properties */
   padding: var(--pad);
-  overflow: auto;
 
   position: relative;
 
@@ -103,6 +138,11 @@ export default {
   grid-row: 1;
 }
 
+/*.main_view:nth-child(2) {
+  
+  transform: translateX(calc(150%));
+}*/
+
 .main_button {
   /* design */
   --spacing: 1.5rem;
@@ -110,23 +150,45 @@ export default {
   --button-polygon: polygon(0 0, var(--reverse-spacing) 0, 100% 50%, var(--reverse-spacing) 100%, 0% 100%, var(--spacing) 50%);
   -webkit-clip-path: var(--button-polygon);
   clip-path: var(--button-polygon);
+  transition: 0.4s;
+}
+
+.main_button {
+  /* properties */
   color: var(--color-text);
   background: var(--color-background-2);
-
-  /* properties */
-  display: flex;
-  float: left;
-  overflow: hidden;
+  
+  margin: 0;
   padding: calc(var(--pad)*0.5) calc(var(--pad)*2);
+  text-align: center;
+  overflow: auto;
+  display: inline-block;
+}
+
+.main_button_border {
+  filter: drop-shadow(0 0 1px #5cd9ff);
+  /*background: -webkit-linear-gradient(-90deg,#5cd9ff 0%,#249abe 50%,#00536d 100%);*/
 }
 
 .main_button:hover {
   background: var(--color-background-1);
   color: var(--color-text-link);
+  transition: 0.1s;
 }
 
-.main_button h1 {
-  margin: 0;
+.main_button_border:hover {
+  /*background: -webkit-linear-gradient(-90deg,#367e94 0%, #ffffff 50%,#5cd9ff 100%);*/
+  filter: drop-shadow(0 0 8px #5cd9ff);
+}
+
+.main_left {
+  display: block;
+  text-align: left;
+}
+
+.main_right {
+  display: block;
+  text-align: right;
 }
 
 </style>

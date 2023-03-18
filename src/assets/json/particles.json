@@ -1,0 +1,40 @@
+{
+  "backgroundMode": {
+    "enable": true
+  },
+  "fpsLimit": 120,
+  "detectRetina": false,
+  "background": {
+    "color": "#070713"
+  },
+  "particles": {
+    "number": {
+      "density": {
+        "enable": true,
+        "area": 800
+      },
+      "value": 15
+    },
+    "color": {
+      "value": "#130922"
+    },
+    "shape": {
+      "type": "square"
+    },
+    "opacity": {
+      "value": 0.4,
+      "random": false
+    },
+    "size": {
+      "value": { "min": 50, "max": 400 }
+    },
+    "move": {
+      "enable": true,
+      "speed": { "min": 0.5, "max": 2 },
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "outMode": "out"
+    }
+  }
+}

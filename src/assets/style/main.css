@@ -6,12 +6,17 @@
 
 a {
   text-decoration: none;
-  color: var(--color-text-link);
   transition: 0.4s;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(0, 0%, 51%, 0.2);
-  }
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+hr {
+  margin: var(--pad);
 }

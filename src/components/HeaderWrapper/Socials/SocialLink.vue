@@ -7,11 +7,8 @@ function getImageURL(name) {
 </script>
 
 <template>
-  <a v-bind:href=data.url target="_blank">
-    <div class="link">
+  <a class="navlink" v-bind:href=data.url target="_blank">
       <img v-bind:src="getImageURL(data.img)" alt="" />
-      <h3>{{ data.name }}</h3>
-    </div>
   </a>
 </template>
 
@@ -23,26 +20,16 @@ export default {
 
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 
-.link {
+a {
+  float: left;
   display: flex;
-  margin: 16px;
+  padding: 0.5rem 1rem;
 }
 
 img {
   height: 24px;
-}
-
-h3 {
-  margin-left: 8px;
-  line-height: 24px;
-}
-
-@media (max-width: @mobileWidth) {
-  h3 {
-    display: none;
-  }
 }
 
 @media (prefers-color-scheme: dark) {

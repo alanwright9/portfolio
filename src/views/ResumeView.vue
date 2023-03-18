@@ -1,5 +1,3 @@
 <template>
-  <div class="main_view">
-    <h1>Resume</h1>
-  </div>
+  <h1>Resume</h1>
 </template>
