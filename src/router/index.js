@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { StringHelper } from './methods'
-import jsonPages from './pages.json'
+import jsonRoutes from './routes.json'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: []
 })
 
-for (var i = 0; i < jsonPages.length; i++) {
-  const page = jsonPages[i]
+for (var i = 0; i < jsonRoutes.length; i++) {
+  const page = jsonRoutes[i]
 
   router.addRoute(
     {

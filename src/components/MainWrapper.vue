@@ -1,16 +1,16 @@
 <template>
-  <main>
-    <div class="main_wrapper">
-      <ParticleBackground :scroll_pos="$route.meta.id" :scroll_speed="50" :scroll_time="1.5"/>
-      <RouterView v-slot="{ Component, route }">
-        <transition :name="transitionName">
-          <div class="main_view" :key="route.name">
+  <div>
+    <ParticleBackground :scroll_pos="$route.meta.id" :scroll_speed="50" :scroll_time="1.5"/>
+    <RouterView v-slot="{ Component, route }">
+      <transition :name="transitionName">
+        <div class="view-manager" :key="route.name">
+          <div class="content-area mx-auto px-4 px-md-5 py-5 top-0 left-0">
             <component :is="Component"/>
           </div>
-        </transition>
-      </RouterView>
-    </div>
-  </main>
+        </div>
+      </transition>
+    </RouterView>
+  </div>
 </template>
 
 <script>
@@ -32,8 +32,10 @@ export default {
   data() {
     return {
       transitionName: ref(defaultTransition),
-      transitionDirection: ref(1),
-      headerHeight: 0
+      transitionDirection: 1,
+      headerHeight: 0,
+      fadeinTime: '1s',
+      slideTime: '0.3s'
     }
   },
 
@@ -49,39 +51,36 @@ export default {
   methods: {
     calculateHeaderHeight() {
       this.headerHeight = document.getElementsByTagName("header")[0].offsetHeight
-    }
+    },
   },
 
   watch: {
     $route(to, from) {
       this.transitionName = from.meta.id == undefined ? defaultTransition : navTransition
-      this.transitionDirection = to.meta.id > from.meta.id ? 1 : -1;
-      console.log()
+      this.transitionDirection = to.meta.id > from.meta.id ? 1 : -1
     }
   }
 }
 
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 
-main {
-  min-height: 100vh;
-  overflow: hidden;
+.view-manager {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 100vw;
+  padding-top: v-bind("headerHeight.toString() + 'px'");
 }
 
-.main_wrapper {
-  max-width: @maxContentWidth;
-  
-  /*padding: 0 var(--pad);*/
-  margin: 0 auto;
-  padding-top: calc(v-bind("headerHeight.toString() + 'px'") + var(--pad));
-  padding-bottom: var(--pad);
-
-  display: grid;
-
-  --fade-time: .3s;
-  --transform-time: .3s;
+.main_view {
+  /* properties */
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .fade-in-leave-to,
@@ -89,11 +88,11 @@ main {
 .slide-enter-from,
 .slide-leave-to {
   opacity: 0;
-  transform-origin: 50% 0;
+  transform-origin: 50% 50%;
 }
 
 .fade-in-enter-active {
-  transition: opacity 1s ease-out;
+  transition: opacity v-bind(fadeinTime) ease-out;
 }
 
 .fade-in-leave-active {
@@ -102,81 +101,22 @@ main {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: opacity var(--fade-time) ease-out, transform var(--transform-time) ease-out;
+  transition: all v-bind(slideTime) ease-out;
 }
 
 .slide-leave-to {
-  transform: translateX(calc(-100% * v-bind(transitionDirection))) translateY(0vh) scale(200%);
+  transform: translateX(calc(-100% * v-bind(transitionDirection))) scale(200%);
+  filter: blur(16px);
 }
 
 .slide-enter-from {
-  transform: translateX(calc(100% * v-bind(transitionDirection))) translateY(-20vh) scale(50%);
+  transform: translateX(calc(50% * v-bind(transitionDirection))) scale(50%);
 }
 
 </style>
 
 <!-- To be accessed by children -->
 <style>
-
-.main_view {
-  /* design 
-  --border-size: var(--pad);
-  --background-polygon: polygon(0 var(--border-size), var(--border-size) 0, 100% 0,
-    100% calc(100% - var(--border-size)), calc(100% - var(--border-size)) 100%, 0 100%);
-  -webkit-clip-path: var(--background-polygon);
-  clip-path: var(--background-polygon);
-  background: var(--color-background); */
-
-  /* properties */
-  padding: var(--pad);
-
-  position: relative;
-
-  align-self: start;
-  grid-column: 1;
-  grid-row: 1;
-}
-
-/*.main_view:nth-child(2) {
-  
-  transform: translateX(calc(150%));
-}*/
-
-.main_button {
-  /* properties */
-  margin: 0;
-  padding: calc(var(--pad)*0.5) calc(var(--pad)*2);
-  text-align: center;
-  overflow: auto;
-  display: inline-block;
-
-  /* shape */
-  --spacing: 1.5rem;
-  --reverse-spacing: calc(100% - var(--spacing));
-  --button-polygon: polygon(0 0, var(--reverse-spacing) 0, 100% 50%, var(--reverse-spacing) 100%, 0% 100%, var(--spacing) 50%);
-
-  -webkit-clip-path: var(--button-polygon);
-  clip-path: var(--button-polygon);
-
-  /* color */
-  color: var(--color-text);
-  background: var(--color-background-2);
-  transition: 0.4s;
-}
-
-.main_button:hover {
-  background: var(--color-background-1);
-  color: var(--color-text-link);
-  transition: 0.1s;
-}
-
-.main_button_border {
-  filter: drop-shadow(0 0 1px #5cd9ff);
-}
-
-.main_button_border:hover {
-  filter: drop-shadow(0 0 8px #5cd9ff);
-}
 
 .main_left {
   display: block;

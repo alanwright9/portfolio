@@ -3,7 +3,8 @@
     id="tsparticles"
     :particlesInit="particlesInit"
     :particlesLoaded="particlesLoaded"
-    :url="jsonParticles" />
+    :url="jsonParticles"
+  />
 </template>
 
 <script>
@@ -43,6 +44,7 @@ export default {
   },
 
   mounted() {
+    // Controls the additional horizontal speed of every particle
     this.velocity = 0.0
   },
 
@@ -84,8 +86,17 @@ export default {
     // Called once particles are loaded
     particlesLoaded(container) {
       console.log("Particles container loaded", container)
-    },
+    }
   },
 }
 
 </script>
+
+<style scoped>
+
+#tsparticles {
+  position: fixed;
+  z-index: -1;
+}
+
+</style>

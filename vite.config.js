@@ -12,11 +12,11 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  css: {
+  /*css: {
     preprocessorOptions: {
-      less: {
-        additionalData: `@import '@/assets/style/common.less';`
+      scss: {
+        additionalData: `@import '@/assets/style/common.scss';`
       }
     }
-  }
+  }*/
 })
