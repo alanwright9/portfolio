@@ -8,7 +8,7 @@
     "libraries": [
       "vue-router", "Bootstrap 5.2", "tsParticles"
     ],
-    "description": "This is the portfolio you are looking at now! It is hand-crafted by myself using Vue.js along with a couple other helper libraries. It is a single page app using a Router to switch pages, with a fancy background that reacts to navigation.",
+    "description": "This is the portfolio you are looking at now! It is hand-crafted by myself using Vue.js along with a couple other helper libraries. It is a single page app using a Router to switch pages, with a fancy background that reacts to navigation. Loads data like the cards from this page from json files too!",
     "buttons": [
       {
         "label": "Source",
