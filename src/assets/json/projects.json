@@ -1,0 +1,44 @@
+[
+  {
+    "image": "portfolio.png",
+    "title": "Web Developer Portfolio",
+    "skills": [
+      "Vue.js", "HTML", "CSS"
+    ],
+    "libraries": [
+      "vue-router", "Bootstrap 5.2", "tsParticles"
+    ],
+    "description": "This is the portfolio you are looking at now! It is hand-crafted by myself using Vue.js along with a couple other helper libraries. It is a single page app using a Router to switch pages, with a fancy background that reacts to navigation.",
+    "buttons": [
+      {
+        "label": "Source",
+        "url": "https://github.com/Techtress/vue-portfolio"
+      },
+      {
+        "label": "Site Link",
+        "url": "https://techtress.github.io/vue-portfolio/"
+      }
+    ]
+  },
+  {
+    "image": "2dgame.png",
+    "title": "Cave Monster Slayer - 2D Game Engine",
+    "skills": [
+      "C++", "XML", "2D Animation"
+    ],
+    "libraries": [
+      "SDL", "expat"
+    ],
+    "description": "College project in 2019 for one of my Computer Science classes: 2D Game Engine in C++. I drew all the animations myself using Krita and a pen tablet, and programmed the entire game engine myself using the SDL library to help render images and play sounds.",
+    "buttons": [
+      {
+        "label": "Source",
+        "url": "https://github.com/Techtress/2019-Cave-Monster-Slayer"
+      },
+      {
+        "label": "View Demo",
+        "url": "https://youtu.be/IQYSPOX8tNM"
+      }
+    ]
+  }
+]

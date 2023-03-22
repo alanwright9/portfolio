@@ -1,0 +1,114 @@
+@use 'sass:math';
+@import "../node_modules/bootstrap/scss/functions";
+
+/*$rfs-factor: 5;*/
+$spacer: 1rem;
+
+$display-font-weight: 500;
+
+$navbar-nav-link-padding-x: $spacer;
+
+$primary: #231a30;
+$secondary: #442c66;
+$tertiary: #00000080;
+$body-color: #090910;
+
+$link-color: white;
+$link-decoration: none;
+$link-hover-color: rgb(136, 122, 153);
+
+$navbar-light-color: $link-hover-color;
+$navbar-light-hover-color: $link-color;
+
+$btn-hover-bg-shade-amount: 25%;
+
+$card-border-width: 0;
+$card-border-radius: 0;
+
+@import "../node_modules/bootstrap/scss/variables";
+
+$custom-colors: (
+  "tertiary": $tertiary
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.content-area {
+  max-width: 1280px;
+}
+
+a, img, .btn {
+  transition: 0.4s !important;
+}
+
+.tech-navlink {
+  color: $link-hover-color;
+}
+
+.tech-navlink:hover,
+.tech-navlink.router-link-exact-active {
+  color: $link-color;
+}
+
+.bg-widget {
+  --spacing: 2rem;
+  --r-spacing: calc(100% - var(--spacing));
+  --shape: polygon(0 var(--spacing), var(--spacing) 0, 100% 0, 100% var(--r-spacing), var(--r-spacing) 100%, 0 100%);
+
+  -webkit-clip-path: var(--shape);
+  clip-path: var(--shape);
+
+  background-color: #00000080;
+}
+
+p {
+  margin: 0;
+}
+
+hr {
+  opacity: 1;
+  font-weight: 400;
+  border: 1px inset white;
+}
+
+.tech-btn {
+  --spacing: 0.5rem;
+  --reverse-spacing: calc(100% - var(--spacing));
+  --button-polygon: polygon(var(--spacing) 0, 100% 0, var(--reverse-spacing) 100%, 0 100%);
+}
+
+.tech-btn-lg {
+  --spacing: 1.5rem;
+  --reverse-spacing: calc(100% - var(--spacing));
+  --button-polygon: polygon(0 0, var(--reverse-spacing) 0, 100% 50%, var(--reverse-spacing) 100%, 0% 100%, var(--spacing) 50%);
+}
+
+.tech-btn,
+.tech-btn-lg {
+  border: none !important;
+  border-radius: 0 !important;
+
+  -webkit-clip-path: var(--button-polygon);
+  clip-path: var(--button-polygon);
+}
+
+.tech-btn-lg-border,
+.tech-btn-border {
+  filter: drop-shadow(0 0 1px #5cb0ff);
+  transition: all 0.4s ease-out;
+}
+
+.bg-softborder,
+.tech-btn-lg-border:hover {
+  filter: drop-shadow(0 0 12px #5cb0ff40);
+}
+
+.tech-btn-border:hover {
+  filter: drop-shadow(0 0 2px #5cb0ffa0);
+}
+
+body {
+  background-color: var(--bs-body-color);
+}
