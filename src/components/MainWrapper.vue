@@ -1,10 +1,12 @@
 <template>
   <div>
-    <ParticleBackground :scroll_pos="$route.meta.id" :scroll_speed="50" :scroll_time="1.5"/>
+    <div class="position-fixed">
+      <ParticleBackground :scroll_pos="$route.meta.id" :scroll_speed="50" :scroll_time="1.5"/>
+    </div>
     <RouterView v-slot="{ Component, route }">
       <transition :name="transitionName">
-        <div class="view-manager" :key="route.name">
-          <div class="content-area mx-auto px-4 px-md-5 py-5 top-0 left-0">
+        <div class="view-manager d-flex flex-column align-items-start" :key="route.name">
+          <div class="w-100 content-area mx-auto px-4 px-md-5 py-5 top-0 left-0">
             <component :is="Component"/>
           </div>
         </div>
@@ -14,7 +16,6 @@
 </template>
 
 <script>
-
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 
@@ -105,12 +106,12 @@ export default {
 }
 
 .slide-leave-to {
-  transform: translateX(calc(-100% * v-bind(transitionDirection))) scale(200%);
+  transform: translateX(calc(-100% * v-bind(transitionDirection))) scale(200%) rotateZ(calc(-15deg * v-bind(transitionDirection)));
   filter: blur(16px);
 }
 
 .slide-enter-from {
-  transform: translateX(calc(50% * v-bind(transitionDirection))) scale(50%);
+  transform: translateX(calc(50% * v-bind(transitionDirection))) scale(50%) rotateZ(calc(15deg * v-bind(transitionDirection)));
 }
 
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <RouterLink :to="to" class="btn-border">
-    <div class="btn btn-secondary py-3 px-5">
+  <RouterLink :to="to" class="tech-btn-lg-border">
+    <div class="btn tech-btn-lg btn-tertiary py-3 px-5">
       <p class="fs-2 mx-md-4">
         {{ label }}
       </p>

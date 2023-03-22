@@ -11,14 +11,12 @@
         <div class="d-none d-md-flex ms-auto">
           <Socials/>
         </div>
-
         <div class="d-flex d-md-none ms-auto navbar-item">
           <a class="d-flex" data-bs-toggle="offcanvas" href="#route-nav" role="button" aria-controls="route-nav">
             <p class="d-flex me-2">{{ $route.name }}</p>
             <NavbarIcon img="list"/>
           </a>
         </div>
-        
       </div>
     </div>
   </header>

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { StringHelper } from './methods'
+import { StringHelper } from '@/scripts/stringhelper'
 import jsonRoutes from './routes.json'
 
 const router = createRouter({
