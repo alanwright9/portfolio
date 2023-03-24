@@ -55,7 +55,6 @@ export default {
   methods: {
     setVideo(event) {
       const button = event.relatedTarget
-      console.log(import.meta.env.BASE_URL)
       //this.vid_url = `${import.meta.env.BASE_URL}assets/videos/${button.getAttribute("data-url")}`
       this.vid_url = AssetURL.get(button.getAttribute("data-url"), "videos")
     },
