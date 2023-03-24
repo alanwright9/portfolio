@@ -8,15 +8,12 @@
     "libraries": [
       "vue-router", "Bootstrap 5.2", "tsParticles"
     ],
-    "description": "This is the portfolio you are looking at now! It is hand-crafted by myself using Vue.js along with a couple other helper libraries. It is a single page app using a Router to switch pages, with a fancy background that reacts to navigation. Loads data like the cards from this page from json files too!",
+    "description": "This is the portfolio you are looking at now! It is hand-crafted by myself using Vue.js using Bootstrap 5.2 for UI elements and flexboxing, with tsParticles for the fancy background. It is a single page app using a vue-router to switch pages. Makes use of json loading for external data such as the project cards you are reading right now!",
     "buttons": [
       {
         "label": "Source",
+        "type": "link",
         "url": "https://github.com/Techtress/vue-portfolio"
-      },
-      {
-        "label": "Site Link",
-        "url": "https://techtress.github.io/vue-portfolio/"
       }
     ]
   },
@@ -33,11 +30,13 @@
     "buttons": [
       {
         "label": "Source",
+        "type": "link",
         "url": "https://github.com/Techtress/2019-Cave-Monster-Slayer"
       },
       {
-        "label": "View Demo",
-        "url": "https://youtu.be/IQYSPOX8tNM"
+        "label": "Watch Demo",
+        "type": "video",
+        "url": "alan9.mp4"
       }
     ]
   }

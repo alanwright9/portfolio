@@ -12,6 +12,7 @@
         </div>
       </transition>
     </RouterView>
+    <VideoPlayerModal name="videoPlayer"/>
   </div>
 </template>
 
@@ -19,6 +20,7 @@
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 
+import VideoPlayerModal from '@/components/VideoPlayerModal.vue'
 import ParticleBackground from './MainWrapper/ParticleBackground.vue'
 
 const defaultTransition = "fade-in"
@@ -27,6 +29,7 @@ const navTransition = "slide"
 export default {
   
   components: {
+    VideoPlayerModal,
     ParticleBackground
   },
 

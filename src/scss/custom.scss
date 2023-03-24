@@ -25,6 +25,13 @@ $btn-hover-bg-shade-amount: 25%;
 $card-border-width: 0;
 $card-border-radius: 0;
 
+$modal-content-bg:            $primary;
+$modal-content-border-width:  0;
+$modal-content-border-radius: 0;
+
+$modal-backdrop-bg:           $primary;
+$modal-backdrop-opacity:      0.5;
+
 @import "../node_modules/bootstrap/scss/variables";
 
 $custom-colors: (
@@ -60,7 +67,7 @@ a, img, .btn {
   -webkit-clip-path: var(--shape);
   clip-path: var(--shape);
 
-  background-color: #00000080;
+  background-color: $tertiary;
 }
 
 p {
@@ -106,7 +113,7 @@ hr {
 }
 
 .tech-btn-border:hover {
-  filter: drop-shadow(0 0 2px #5cb0ffa0);
+  filter: drop-shadow(0 0 2px #5cb0ffc0);
 }
 
 body {
