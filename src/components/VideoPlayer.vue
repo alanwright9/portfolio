@@ -1,7 +1,7 @@
 <template>
   <div>
-    <video v-if="src != ''" controls>
-      <source type="video/mp4" :src="src" />
+    <video controls autoplay>
+      <source v-if="src != ''" type="video/mp4" :src="src" />
     </video>
   </div>
 </template>

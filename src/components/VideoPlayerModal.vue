@@ -3,17 +3,9 @@
     <div class="modal-dialog modal-dialog-centered content-area p-1 p-md-5">
       <div class="bg-softborder w-100">
         <div class="modal-content bg-widget w-100 mb-5">
-          <div class="modal-header">
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body p-0 pb-5">
-            <VideoPlayer :src="vid_url"/>
-            <!--<LiteYouTubeEmbed v-if="vid_id != ''"
-              :id="vid_id"
-              :title="vid_title"
-              ref="iframe"
-              params="start=0&autoplay=1"
-              poster="maxresdefault"/>-->
+          <div class="modal-body p-0 position-relative">
+            <VideoPlayer :src="vid_url" />
+            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2 p-2" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
         </div>
       </div>
@@ -24,6 +16,7 @@
 <script>
 import VideoPlayer from './VideoPlayer.vue'
 import AssetURL from '@/scripts/asseturl'
+import { ref } from 'vue'
 
 export default {
   components: {
@@ -37,10 +30,12 @@ export default {
   },
   data() {
     return {
-      vid_url: ""
+      vid_url: "",
+      video: ref(null)
     }
   },
   mounted() {
+    this.video = document.getElementsByTagName('video')[0];
     const modal = document.getElementById(this.name)
     modal.addEventListener('show.bs.modal', this.setVideo)
     modal.addEventListener('shown.bs.modal', this.startVideo)
@@ -55,68 +50,14 @@ export default {
   methods: {
     setVideo(event) {
       const button = event.relatedTarget
-      //this.vid_url = `${import.meta.env.BASE_URL}assets/videos/${button.getAttribute("data-url")}`
       this.vid_url = AssetURL.get(button.getAttribute("data-url"), "videos")
     },
     startVideo() {
-      
+      this.video.play()
     },
     stopVideo() {
-      this.vid_id = ""
-      this.vid_title = ""
+      this.video.pause()
     }
   }
 }
-
-/*import { ref } from 'vue'
-import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
-import 'vue-lite-youtube-embed/style.css'
-
-export default {
-  components: {
-    LiteYouTubeEmbed
-  },
-  props: {
-    name: {
-      type: String,
-      required: true
-    }
-  },
-  setup() {
-    const iframe = ref(null)
-    return {
-      iframe
-    }
-  },
-  data() {
-    return {
-      vid_id: "",
-      vid_title: ""
-    }
-  },
-  mounted() {
-    const modal = document.getElementById(this.name)
-    modal.addEventListener('show.bs.modal', this.setVideo)
-    modal.addEventListener('hide.bs.modal', this.stopVideo)
-  },
-  unmounted() {
-    const modal = document.getElementById(this.name)
-    modal.removeEventListener('show.bs.modal', this.setVideo)
-    modal.removeEventListener('hide.bs.modal', this.stopVideo)
-  },
-  methods: {
-    setVideo(event) {
-      const button = event.relatedTarget
-      this.vid_id = button.getAttribute("video-id")
-      this.vid_title = button.getAttribute("video-title")
-    },
-    startVideo() {
-      
-    },
-    stopVideo() {
-      this.vid_id = ""
-      this.vid_title = ""
-    }
-  }
-}*/
 </script>

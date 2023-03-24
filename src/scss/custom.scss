@@ -29,8 +29,8 @@ $modal-content-bg:            $primary;
 $modal-content-border-width:  0;
 $modal-content-border-radius: 0;
 
-$modal-backdrop-bg:           $primary;
-$modal-backdrop-opacity:      0.5;
+$modal-backdrop-bg:           black;
+$modal-backdrop-opacity:      0.8;
 
 @import "../node_modules/bootstrap/scss/variables";
 
