@@ -1,9 +1,9 @@
 <template>
   <div class="modal fade" :id="name" tabindex="-1" :aria-labelledby="`${name}Label`" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered content-area p-1 p-md-5">
-      <div class="bg-softborder w-100">
-        <div class="modal-content bg-widget w-100 mb-5">
-          <div class="modal-body p-0 position-relative">
+      <div class="bg-softborder mx-auto">
+        <div class="modal-content bg-widget mb-5">
+          <div id="player" class="modal-body p-0 position-relative">
             <VideoPlayer :src="vid_url" />
             <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2 p-2" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -61,3 +61,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>

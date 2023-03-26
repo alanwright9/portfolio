@@ -1,5 +1,5 @@
 <template>
-  <Particles
+  <particles
     id="tsparticles"
     :particlesInit="particlesInit"
     :particlesLoaded="particlesLoaded"
@@ -8,11 +8,15 @@
 </template>
 
 <script>
-
+import AssetURL from '@/scripts/asseturl'
 import { loadFull } from "tsparticles"
 import { gsap } from 'gsap'
 
 export default {
+
+  data: () => ({
+    velocity: 0.0
+  }),
 
   props: {
     // Horizontal 1-dimensional grid representing where we are located
@@ -37,15 +41,10 @@ export default {
 
   setup() {
     // Import our particles asset
-    const jsonParticles = new URL(`../../assets/json/particles.json`, import.meta.url).href
+    const jsonParticles = AssetURL.get("particles.json", "json")
     return {
       jsonParticles
     }
-  },
-
-  mounted() {
-    // Controls the additional horizontal speed of every particle
-    this.velocity = 0.0
   },
 
   watch: {
@@ -68,24 +67,20 @@ export default {
     },
 
     // Called when particles need initiating
-    particlesInit(main) {
-      loadFull(main)
+    particlesInit(engine) {
+      loadFull(engine)
 
       // Add an updater to change the speed of particles based on how
       // fast they should be flying due to a webpage change
-      main.addParticleUpdater("flyControl", () => {
-        return {
-          init: () => {},
-          update: (particle) => {
-            particle.velocity.x = particle.initialVelocity.x + this.velocity
-          }
-        }
-      })
+      engine.addParticleUpdater("flyControl", () => ({
+        init: () => {},
+        update: particle => particle.velocity.x = particle.initialVelocity.x + this.velocity
+      }))
     },
 
     // Called once particles are loaded
     particlesLoaded(container) {
-      console.log("Particles container loaded", container)
+      // console.log("Particles container loaded", container)
     }
   },
 }

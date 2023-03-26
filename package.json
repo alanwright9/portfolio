@@ -6,8 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "sh deploy.sh",
-    "push": "sh gitpush.sh"
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",

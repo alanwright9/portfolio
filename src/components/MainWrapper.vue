@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div class="position-fixed">
-      <ParticleBackground :scroll_pos="$route.meta.id" :scroll_speed="50" :scroll_time="1.5"/>
-    </div>
-    <RouterView v-slot="{ Component, route }">
-      <transition :name="transitionName">
-        <div class="view-manager d-flex flex-column align-items-start" :key="route.name">
-          <div class="w-100 content-area mx-auto px-4 px-md-5 py-5 top-0 left-0">
-            <component :is="Component"/>
+    <ParticleBackground :scroll_pos="$route.meta.id" :scroll_speed="50" :scroll_time="1.5"/>
+    <div class="view-manager">
+      <RouterView v-slot="{ Component, route }">
+        <transition :name="transitionName">
+          <div class="view w-100" :key="route.name">
+            <div class="w-100 content-area mx-auto px-4 px-md-5 py-5 top-0 left-0">
+              <component :is="Component"/>
+            </div>
           </div>
-        </div>
-      </transition>
-    </RouterView>
+        </transition>
+      </RouterView>
+    </div>
     <VideoPlayerModal name="videoPlayer"/>
   </div>
 </template>
@@ -19,6 +19,7 @@
 <script>
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
+import gsap from 'gsap'
 
 import VideoPlayerModal from '@/components/VideoPlayerModal.vue'
 import ParticleBackground from './MainWrapper/ParticleBackground.vue'
@@ -55,7 +56,7 @@ export default {
   methods: {
     calculateHeaderHeight() {
       this.headerHeight = document.getElementsByTagName("header")[0].offsetHeight
-    },
+    }
   },
 
   watch: {
@@ -71,14 +72,19 @@ export default {
 <style scoped>
 
 .view-manager {
-  position: fixed;
-  top: 0;
-  left: 0;
+  max-width: 100vw;
+
   overflow-x: hidden;
-  overflow-y: scroll;
-  height: 100vh;
-  width: 100vw;
+
+  display: grid;
   padding-top: v-bind("headerHeight.toString() + 'px'");
+}
+
+.view {
+  grid-row: 1;
+  grid-column: 1;
+
+  
 }
 
 .main_view {
@@ -105,7 +111,14 @@ export default {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all v-bind(slideTime) ease-out;
+  transition:
+    transform v-bind(slideTime) ease-out,
+    opacity v-bind(slideTime) ease-out,
+    filter v-bind(slideTime) ease-out;
+}
+
+.slide-enter-active {
+  position: fixed;
 }
 
 .slide-leave-to {
@@ -114,7 +127,9 @@ export default {
 }
 
 .slide-enter-from {
-  transform: translateX(calc(50% * v-bind(transitionDirection))) scale(50%) rotateZ(calc(15deg * v-bind(transitionDirection)));
+  transform:
+    translateX(calc(50% * v-bind(transitionDirection)))
+    scale(50%) rotateZ(calc(15deg * v-bind(transitionDirection)));
 }
 
 </style>

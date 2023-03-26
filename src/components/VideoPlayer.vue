@@ -18,6 +18,7 @@ export default {
 
 <style>
 video {
-  width: 100%;
+  max-width: 100%;
+  max-height: 90vh;
 }
 </style>

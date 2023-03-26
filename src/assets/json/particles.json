@@ -31,8 +31,6 @@
       "enable": true,
       "speed": { "min": 0.3, "max": 2 },
       "direction": "none",
-      "random": false,
-      "straight": false,
       "outMode": "out"
     }
   }
