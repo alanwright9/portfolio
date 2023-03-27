@@ -51,7 +51,7 @@ export default {
 
   watch: {
     $route(to, from) {
-      this.lastScroll = window.scrollY
+      console.log(this.lastScroll = window.scrollY)
       this.transitionName = from.meta.id == undefined ? defaultTransition : navTransition
       this.transitionDirection = to.meta.id > from.meta.id ? 1 : -1
     }
@@ -80,33 +80,27 @@ export default {
 .slide-enter-from,
 .slide-leave-to {
   opacity: 0;
-  transform-origin: 50% 50%;
 }
 
 .fade-in-enter-active {
   transition: opacity v-bind(cssFadeTime) ease-out;
 }
 
-.fade-in-leave-active {
-  display: none;
-}
-
 .slide-enter-active,
 .slide-leave-active {
   position: fixed;
-  transition: all v-bind(cssSlideTime) ease-out;
+  transition:
+    transform v-bind(cssSlideTime) ease-out,
+    opacity v-bind(cssSlideTime) ease-out,
+    filter v-bind(cssSlideTime) ease-out;
 }
 
+.slide-enter-active {
+  transform-origin: 50% min(50%, 50vh);
+}
 .slide-leave-active {
   top: v-bind("StringHelper.toCSSpx(headerHeight-lastScroll)");
-}
-
-.slide-leave-to {
-  transform:
-    translateX(calc(-100% * v-bind(transitionDirection)))
-    translateY(v-bind("StringHelper.toCSSpx(lastScroll)"))
-    scale(200%) rotateZ(calc(-15deg * v-bind(transitionDirection)));
-  filter: blur(16px);
+  transform-origin: 50% calc(v-bind("StringHelper.toCSSpx(lastScroll)") + 50vh);
 }
 
 .slide-enter-from {
@@ -114,6 +108,13 @@ export default {
     translateX(calc(50% * v-bind(transitionDirection)))
     translateY(v-bind("StringHelper.toCSSpx(-lastScroll)"))
     scale(50%) rotateZ(calc(15deg * v-bind(transitionDirection)));
+}
+.slide-leave-to {
+  transform:
+    translateX(calc(-100% * v-bind(transitionDirection)))
+    translateY(v-bind("StringHelper.toCSSpx(lastScroll)"))
+    scale(200%) rotateZ(calc(-15deg * v-bind(transitionDirection)));
+  filter: blur(16px);
 }
 
 </style>

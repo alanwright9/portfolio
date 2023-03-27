@@ -5,7 +5,16 @@ import jsonRoutes from './routes.json'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  routes: []
+  routes: [],
+  scrollBehavior(to, from) {
+    if (to != from) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ left: 0, top: 0, behavior: "instant" })
+        }, RouterDefaults.transition * 1000)
+      })
+    }
+  }
 })
 
 for (var i = 0; i < jsonRoutes.length; i++) {

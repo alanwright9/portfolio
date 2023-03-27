@@ -9,10 +9,9 @@
       <div class="row mb-5">
         <div class="col col-lg-8">
           <p class="fs-5 text-white text-opacity-75">
-            The following items show off my coding skills and experience.
-            Each contain a brief description with links the source code and a demo.
-            Feel free to check them out! These represent my ability to problem-solve
-            using various technologies, with a smooth, neatly-formatted result.
+            The following items show off my coding expertise, which includes web development
+            in addition to general coding and 2D animation. Each contain a brief description with
+            a link to the source code. Feel free to check them out!
           </p>
         </div>
       </div>

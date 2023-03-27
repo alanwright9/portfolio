@@ -9,7 +9,7 @@
         <CardList label="Skills" :list="data.skills" />
         <CardList label="Libraries" :list="data.libraries" />
 
-        <p class="card-text mt-1">{{ data.description }}</p>
+        <p class="card-text mt-1 text-white text-opacity-75">{{ data.description }}</p>
       </div>
       <div class="card-footer">
         <div class="container-fluid">
