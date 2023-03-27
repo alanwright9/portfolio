@@ -1,17 +1,17 @@
-export class StringHelper {
+const StringHelper = {
 
   // Check if a single character is upper case
-  static isUpperCase(char) {
+  isUpperCase(char) {
     return char == char.toUpperCase()
-  }
+  },
 
   // Convert 'SomeName' to '/' if first or '/somename'
-  static toPath(id, name) {
+  toPath(id, name) {
     return id == 0 ? `/` : `/${name.toLowerCase()}`
-  }
+  },
 
   // Convert 'SomeName' to 'Some Name'
-  static toDisplay(name) {
+  toDisplay(name) {
 
     // Grab first capital
     var newName = name[0]
@@ -29,5 +29,15 @@ export class StringHelper {
       newName += char
     }
     return newName
+  },
+
+  toCSSpx(value) {
+    return value.toString() + 'px'
+  },
+
+  toCSSs(value) {
+    return value.toString() + 's'
   }
 }
+
+export default StringHelper

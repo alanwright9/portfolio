@@ -5,13 +5,13 @@
         <div class="me-auto">
           <Profile/>
         </div>
-        <div class="d-none d-md-flex mx-auto">
+        <div class="d-none d-lg-flex mx-auto">
           <RouteNav ulclass="nav" aclass="tech-navlink p-3"/>
         </div>
-        <div class="d-none d-md-flex ms-auto">
+        <div class="d-none d-lg-flex ms-auto">
           <Socials/>
         </div>
-        <div class="d-flex d-md-none ms-auto navbar-item">
+        <div class="d-flex d-lg-none ms-auto navbar-item">
           <a class="d-flex" data-bs-toggle="offcanvas" href="#route-nav" role="button" aria-controls="route-nav">
             <p class="d-flex me-2">{{ $route.name }}</p>
             <NavbarIcon img="list"/>

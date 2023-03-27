@@ -19,21 +19,23 @@ import AssetURL from '@/scripts/asseturl'
 import { ref } from 'vue'
 
 export default {
+
   components: {
     VideoPlayer
   },
+
   props: {
     name: {
       type: String,
       required: true
     }
   },
-  data() {
-    return {
-      vid_url: "",
-      video: ref(null)
-    }
-  },
+
+  data: () => ({
+    vid_url: "",
+    video: ref(null)
+  }),
+
   mounted() {
     this.video = document.getElementsByTagName('video')[0];
     const modal = document.getElementById(this.name)
@@ -41,12 +43,14 @@ export default {
     modal.addEventListener('shown.bs.modal', this.startVideo)
     modal.addEventListener('hide.bs.modal', this.stopVideo)
   },
+
   unmounted() {
     const modal = document.getElementById(this.name)
     modal.removeEventListener('show.bs.modal', this.setVideo)
     modal.removeEventListener('shown.bs.modal', this.startVideo)
     modal.removeEventListener('hide.bs.modal', this.stopVideo)
   },
+  
   methods: {
     setVideo(event) {
       const button = event.relatedTarget
