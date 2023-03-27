@@ -15,7 +15,7 @@
 
 <script>
 import VideoPlayer from './VideoPlayer.vue'
-import AssetURL from '@/scripts/asseturl'
+import assetURL from '@/scripts/asseturl'
 import { ref } from 'vue'
 
 export default {
@@ -54,7 +54,7 @@ export default {
   methods: {
     setVideo(event) {
       const button = event.relatedTarget
-      this.vid_url = AssetURL.get(button.getAttribute("data-url"), "videos")
+      this.vid_url = assetURL(button.getAttribute("data-url"), "videos")
     },
     startVideo() {
       this.video.play()

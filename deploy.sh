@@ -12,5 +12,5 @@ cd dist
 # commit changes in this directory to the subtree
 git add -A
 git commit -m 'deploy'
-git push -f https://github.com/techtress/vue-portfolio.git main:gh-pages
+git push -f https://github.com/Techtress/vue-portfolio.git main:gh-pages
 cd -
