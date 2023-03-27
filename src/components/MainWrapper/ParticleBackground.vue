@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import AssetURL from '@/scripts/asseturl'
+import assetURL from '@/scripts/asseturl'
 import { loadFull } from "tsparticles"
 import { gsap } from 'gsap'
 
@@ -41,7 +41,7 @@ export default {
 
   setup() {
     // Import our particles asset
-    const jsonParticles = AssetURL.get("particles.json", "json")
+    const jsonParticles = assetURL("particles.json", "json")
     return {
       jsonParticles
     }

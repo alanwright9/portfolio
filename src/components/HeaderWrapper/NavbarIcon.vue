@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AssetURL from '@/scripts/asseturl'
+import assetURL from '@/scripts/asseturl'
 
 export default {
   props: {
@@ -23,7 +23,7 @@ export default {
 
   methods: {
     getImageURL() {
-      return AssetURL.get(this.img + '.svg', 'icons')
+      return assetURL(this.img + '.svg', 'icons')
     }
   }
 }

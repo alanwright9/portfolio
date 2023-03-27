@@ -2,7 +2,7 @@
   <div class="bg-softborder">
     <div class="card bg-widget h-100">
 
-      <img :src="AssetURL.get(data.image, 'img/projects')" class="card-img-top" :alt="data.image">
+      <img :src="assetURL(data.image, 'img/projects')" class="card-img-top" :alt="data.image">
 
       <div class="card-body">
         <h5 class="card-title">{{ data.title }}</h5>
@@ -16,11 +16,11 @@
           <div class="row g-3 mb-3">
             <div class="col-auto" v-for="button in data.buttons">
               <div class="tech-btn-border">
-                <a v-if="button.type == 'link'"
+                <a v-if="button.type === 'link'"
                   :href="button.url" class="btn tech-btn btn-secondary px-4" target="_blank">
                   {{ button.label }}
                 </a>
-                <a v-if="button.type == 'video'"
+                <a v-else-if="button.type === 'video'"
                   href="#" class="btn tech-btn btn-secondary px-4"
                   data-bs-toggle="modal" data-bs-target="#videoPlayer"
                   :data-url="button.url">
@@ -30,15 +30,15 @@
             </div>
           </div>
         </div>
-        
       </div>
+      
     </div>
   </div>
 </template>
 
 <script>
 import CardList from './ProjectsCardList.vue'
-import AssetURL from '@/scripts/asseturl'
+import assetURL from '../../scripts/asseturl'
 
 export default {
 
@@ -51,7 +51,7 @@ export default {
   },
 
   setup: () => ({
-    AssetURL
+    assetURL
   })
 }
 </script>
