@@ -7,7 +7,7 @@ const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [],
   scrollBehavior(to, from) {
-    if (to != from) {
+    if (from.name != undefined && to != from) {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve({ left: 0, top: 0, behavior: "instant" })

@@ -51,7 +51,7 @@ export default {
 
   watch: {
     $route(to, from) {
-      console.log(this.lastScroll = window.scrollY)
+      this.lastScroll = window.scrollY
       this.transitionName = from.meta.id == undefined ? defaultTransition : navTransition
       this.transitionDirection = to.meta.id > from.meta.id ? 1 : -1
     }
@@ -60,7 +60,6 @@ export default {
 </script>
 
 <style scoped>
-
 .view-manager {
   max-width: 100vw;
 
@@ -116,5 +115,4 @@ export default {
     scale(200%) rotateZ(calc(-15deg * v-bind(transitionDirection)));
   filter: blur(16px);
 }
-
 </style>

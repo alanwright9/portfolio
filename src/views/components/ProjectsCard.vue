@@ -1,16 +1,16 @@
 <template>
   <div class="bg-softborder">
     <div class="card bg-widget h-100">
+
       <img :src="AssetURL.get(data.image, 'img/projects')" class="card-img-top" :alt="data.image">
+
       <div class="card-body">
-
         <h5 class="card-title">{{ data.title }}</h5>
-
         <CardList label="Skills" :list="data.skills" />
         <CardList label="Libraries" :list="data.libraries" />
-
         <p class="card-text mt-1 text-white text-opacity-75">{{ data.description }}</p>
       </div>
+
       <div class="card-footer">
         <div class="container-fluid">
           <div class="row g-3 mb-3">
@@ -30,6 +30,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
