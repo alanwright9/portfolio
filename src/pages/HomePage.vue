@@ -6,11 +6,11 @@
     </div>
     <hr class="m-4 m-md-5">
     <div class="text-end">
-      <RouterButton to="/projects" label="Check out my projects!"/>
+      <AppButtonLg to="/projects" label="Check out my projects!"/>
     </div>
   </div>
 </template>
 
 <script setup>
-import RouterButton from '../components/MainWrapper/RouterButton.vue'
+import AppButtonLg from '@/components/ui/AppButtonLg.vue'
 </script>

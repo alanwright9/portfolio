@@ -32,7 +32,11 @@ for (const i in jsonRoutes) {
   router.addRoute({
     path: StringHelper.toPath(i, page.name),
     name: StringHelper.toDisplay(page.name),
-    component: () => import(`../views/${page.name}View.vue`),
+    component: () => import(
+        `../pages/${page.name}Page.vue`
+      ).catch(() => import(
+        `../pages/${page.name}Page/index.vue`
+      )),
     meta: { id: parseInt(i, 10) }
   })
 }

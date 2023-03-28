@@ -3,33 +3,34 @@
     <div class="navbar navbar-expand content-area mx-auto px-4 px-md-5 py-3">
       <div class="container-fluid">
         <div class="me-auto">
-          <Profile/>
+          <HeaderProfile/>
         </div>
         <div class="d-none d-lg-flex mx-auto">
-          <RouteNav ulclass="nav" aclass="tech-navlink p-3"/>
+          <HeaderRouteList ulclass="nav" aclass="tech-navlink p-3"/>
         </div>
         <div class="d-none d-lg-flex ms-auto">
-          <Socials/>
+          <HeaderSocials/>
         </div>
         <div class="d-flex d-lg-none ms-auto navbar-item">
-          <a class="d-flex" data-bs-toggle="offcanvas" href="#route-nav" role="button" aria-controls="route-nav">
+          <a class="d-flex" data-bs-toggle="HeaderMobileNav" href="#route-nav" role="button" aria-controls="route-nav">
             <p class="d-flex me-2">{{ $route.name }}</p>
-            <NavbarIcon img="list"/>
+            <AppIconSm img="list"/>
           </a>
         </div>
       </div>
     </div>
   </header>
 
-  <OffCanvas name="route-nav"/>
+  <HeaderMobileNav name="route-nav"/>
 </template>
 
 <script setup>
-import Profile from './HeaderWrapper/Profile.vue'
-import RouteNav from './HeaderWrapper/RouteNav.vue'
-import Socials from './HeaderWrapper/Socials.vue'
-import NavbarIcon from './HeaderWrapper/NavbarIcon.vue'
-import OffCanvas from './HeaderWrapper/OffCanvas.vue'
+import HeaderProfile    from './HeaderProfile.vue'
+import HeaderRouteList  from './HeaderRouteList.vue'
+import HeaderSocials    from './HeaderSocials.vue'
+import HeaderMobileNav  from './HeaderMobileNav.vue'
+
+import AppIconSm from '../../ui/AppIconSm.vue'
 </script>
 
 <style scoped>
@@ -39,7 +40,7 @@ header {
   z-index: 99 !important;
 }
 
-.offcanvas {
+.HeaderMobileNav {
   width: auto !important;
 }
 

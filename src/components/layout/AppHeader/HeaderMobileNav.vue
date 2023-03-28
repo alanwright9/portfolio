@@ -8,21 +8,21 @@
     </div>
     <div class="offcanvas-body">
       <hr class="m-4" />
-      <RouteNav ulclass="text-center" aclass="d-block tech-navlink fs-4 py-3" dismiss="offcanvas" />
+      <HeaderRouteList ulclass="text-center" aclass="d-block tech-navlink fs-4 py-3" dismiss="offcanvas" />
       <hr class="m-4" />
-      <Socials />
+      <HeaderSocials />
     </div>
   </div>
 </template>
 
 <script>
-import Socials from './Socials.vue'
-import RouteNav from './RouteNav.vue'
+import HeaderSocials from './HeaderSocials.vue'
+import HeaderRouteList from './HeaderRouteList.vue'
 
 export default {
   components: {
-    Socials,
-    RouteNav
+    HeaderSocials,
+    HeaderRouteList
   },
   props: {
     name: {

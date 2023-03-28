@@ -38,7 +38,7 @@
 
 <script>
 import CardList from './ProjectsCardList.vue'
-import assetURL from '../../scripts/asseturl'
+import assetURL from '@/scripts/asseturl'
 
 export default {
 

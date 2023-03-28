@@ -1,11 +1,11 @@
 <template>
   <div class="text-white">
-    <HeaderWrapper/>
-    <MainWrapper/>
+    <AppHeader/>
+    <AppMain/>
   </div>
 </template>
 
 <script setup>
-import HeaderWrapper from './components/HeaderWrapper.vue'
-import MainWrapper from './components/MainWrapper.vue'
+import AppHeader from '@/components/layout/AppHeader'
+import AppMain from '@/components/layout/AppMain'
 </script>

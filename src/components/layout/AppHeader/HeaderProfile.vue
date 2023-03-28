@@ -6,5 +6,5 @@
 </template>
 
 <script setup>
-import jsonProfile from '../../assets/json/profile.json'
+import jsonProfile from '@/assets/json/profile.json'
 </script>
