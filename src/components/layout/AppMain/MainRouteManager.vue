@@ -104,13 +104,13 @@ export default {
 
 .slide-enter-from {
   transform:
-    translateX(calc(50% * v-bind(transitionDirection)))
+    translateX(calc(25% * v-bind(transitionDirection)))
     translateY(v-bind("StringHelper.toCSSpx(-lastScroll)"))
     scale(50%) rotateZ(calc(15deg * v-bind(transitionDirection)));
 }
 .slide-leave-to {
   transform:
-    translateX(calc(-100% * v-bind(transitionDirection)))
+    translateX(calc(-50% * v-bind(transitionDirection)))
     translateY(v-bind("StringHelper.toCSSpx(lastScroll)"))
     scale(200%) rotateZ(calc(-15deg * v-bind(transitionDirection)));
   filter: blur(16px);

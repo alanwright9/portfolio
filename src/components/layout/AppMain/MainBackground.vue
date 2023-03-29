@@ -11,11 +11,16 @@
 import assetURL from '@/scripts/asseturl'
 import { loadFull } from "tsparticles"
 import { gsap } from 'gsap'
+import { ref } from 'vue'
 
 export default {
 
   data: () => ({
-    velocity: 0.0
+    velX: 0.0,
+    velY: 0.0,
+    tweenX: ref(null),
+    tweenY: ref(null),
+    lastScroll: 0
   }),
 
   props: {
@@ -47,13 +52,21 @@ export default {
     }
   },
 
+  mounted() {
+    window.addEventListener("scroll", this.verticalFly)
+  },
+
+  unmounted() {
+    window.removeEventListener("scroll", this.verticalFly)
+  },
+
   watch: {
 
     // If our scroll position has changed, send the particles flying
     // based on how far it changed
     scroll_pos(to, from) {
       if (from != -1 && from != to) {
-        this.flyBackground(this.scroll_speed * (from-to), this.scroll_time)
+        this.flyBackground((from-to))
       }
     }
   },
@@ -62,8 +75,18 @@ export default {
 
     // Sends all the particles flying horizontally to the right (or left if negative)
     // at the specified speed and time (seconds)
-    flyBackground(speed, time) {
-      gsap.fromTo(this, {velocity: speed}, {duration: time, velocity: 0, overwrite: true})
+    flyBackground(direction) {
+      this.velX = this.scroll_speed * direction
+      this.tweenX?.kill()
+      this.tweenX = gsap.to(this, {velX: 0, duration: this.scroll_time})
+    },
+
+    verticalFly() {
+      const direction = (this.lastScroll - window.scrollY) * 0.1;
+      this.lastScroll = window.scrollY;
+      this.velY += direction;
+      this.tweenY?.kill()
+      this.tweenY = gsap.to(this, {velY: 0, duration: this.scroll_time * 0.5})
     },
 
     // Called when particles need initiating
@@ -74,7 +97,10 @@ export default {
       // fast they should be flying due to a webpage change
       engine.addParticleUpdater("flyControl", () => ({
         init: () => {},
-        update: particle => particle.velocity.x = particle.initialVelocity.x + this.velocity
+        update: particle => {
+          particle.velocity.x = particle.initialVelocity.x + this.velX
+          particle.velocity.y = particle.initialVelocity.y + this.velY
+        }
       }))
     },
 
