@@ -6,7 +6,7 @@
       </h5>
       <button class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" />
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body px-3">
       <hr class="m-4" />
       <HeaderRouteList ulclass="text-center" aclass="d-block tech-navlink fs-4 py-3" dismiss="offcanvas" />
       <hr class="m-4" />

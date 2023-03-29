@@ -12,7 +12,7 @@
           <HeaderSocials/>
         </div>
         <div class="d-flex d-lg-none ms-auto navbar-item">
-          <a class="d-flex" data-bs-toggle="HeaderMobileNav" href="#route-nav" role="button" aria-controls="route-nav">
+          <a class="d-flex" data-bs-toggle="offcanvas" href="#route-nav" role="button" aria-controls="route-nav">
             <p class="d-flex me-2">{{ $route.name }}</p>
             <AppIconSm img="list"/>
           </a>
@@ -40,7 +40,7 @@ header {
   z-index: 99 !important;
 }
 
-.HeaderMobileNav {
+.offcanvas {
   width: auto !important;
 }
 
