@@ -3,7 +3,7 @@
     id="tsparticles"
     :particlesInit="particlesInit"
     :particlesLoaded="particlesLoaded"
-    :url="jsonParticles"
+    :url="particlesURL"
   />
 </template>
 
@@ -11,82 +11,72 @@
 import assetURL from '@/scripts/asseturl'
 import { loadFull } from "tsparticles"
 import { gsap } from 'gsap'
-import { ref } from 'vue'
+
+const particleFlyDuration   = 1.5
+const horizontalSpeed       = 50
+const verticalScrollFactor  = 0.05
+
+const newAxis = () => ({
+
+  velocity: 0.0,
+
+  setVelocity(value) {
+    this.velocity = value
+    this._restart()
+  },
+
+  _restart() {
+    gsap.to(this, {velocity: 0.0, duration: particleFlyDuration, overwrite: true})
+  }
+})
 
 export default {
 
   data: () => ({
-    velX: 0.0,
-    velY: 0.0,
-    tweenX: ref(null),
-    tweenY: ref(null),
+    axisX: newAxis(),
+    axisY: newAxis(),
     lastScroll: 0
   }),
 
-  props: {
-    // Horizontal 1-dimensional grid representing where we are located
-    // to determine how far and in what direction to shift the particles
-    scroll_pos: {
-      type: Number,
-      default: -1
-    },
-
-    // Speed at which the particles fly
-    scroll_speed: {
-      type: Number,
-      default: 100
-    },
-
-    // Time (in seconds) to slow back down to 0
-    scroll_time: {
-      type: Number,
-      default: 1
-    }
-  },
-
-  setup() {
-    // Import our particles asset
-    const jsonParticles = assetURL("particles.json", "json")
-    return {
-      jsonParticles
-    }
-  },
+  setup: () => ({
+    particlesURL : assetURL("particles.json", "json")
+  }),
 
   mounted() {
-    window.addEventListener("scroll", this.verticalFly)
+    window.addEventListener("scroll", this.onWindowScroll)
   },
 
   unmounted() {
-    window.removeEventListener("scroll", this.verticalFly)
+    window.removeEventListener("scroll", this.onWindowScroll)
   },
 
   watch: {
 
     // If our scroll position has changed, send the particles flying
     // based on how far it changed
-    scroll_pos(to, from) {
-      if (from != -1 && from != to) {
-        this.flyBackground((from-to))
+    $route(to, from) {
+
+      // On page reload, do not shoot particles anywhere
+      if (!from) {
+        return
+      }
+
+      // Grab the ID of the to/from pages
+      const to_id   = to.meta.id
+      const from_id = from.meta.id
+
+      // If we didn't click on the same page, shoot particles
+      if (to_id != from_id) {
+        this.axisX.setVelocity((from_id - to_id) * horizontalSpeed)
       }
     }
   },
 
   methods: {
 
-    // Sends all the particles flying horizontally to the right (or left if negative)
-    // at the specified speed and time (seconds)
-    flyBackground(direction) {
-      this.velX = this.scroll_speed * direction
-      this.tweenX?.kill()
-      this.tweenX = gsap.to(this, {velX: 0, duration: this.scroll_time})
-    },
-
-    verticalFly() {
-      const direction = (this.lastScroll - window.scrollY) * 0.1;
-      this.lastScroll = window.scrollY;
-      this.velY += direction;
-      this.tweenY?.kill()
-      this.tweenY = gsap.to(this, {velY: 0, duration: this.scroll_time * 0.5})
+    onWindowScroll() {
+      this.axisY.setVelocity(this.axisY.velocity +
+        (this.lastScroll - (this.lastScroll = window.scrollY)) * verticalScrollFactor)
     },
 
     // Called when particles need initiating
@@ -98,8 +88,8 @@ export default {
       engine.addParticleUpdater("flyControl", () => ({
         init: () => {},
         update: particle => {
-          particle.velocity.x = particle.initialVelocity.x + this.velX
-          particle.velocity.y = particle.initialVelocity.y + this.velY
+          particle.velocity.x = particle.initialVelocity.x + this.axisX.velocity
+          particle.velocity.y = particle.initialVelocity.y + this.axisY.velocity
         }
       }))
     },

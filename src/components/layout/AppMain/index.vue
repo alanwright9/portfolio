@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MainBackground :scroll_pos="$route.meta.id" :scroll_speed="50" :scroll_time="1.5"/>
+    <MainBackground/>
     <MainRouteManager/>
     <VideoPlayerModal name="videoPlayer"/>
   </div>
