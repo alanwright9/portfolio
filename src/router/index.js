@@ -1,7 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import StringHelper from '@/scripts/stringhelper'
-import RouterDefaults from '@/scripts/routerdefaults'
+import { StringHelper, routeManager, RouterDefaults } from '@/scripts'
 import jsonRoutes from './routes.json'
+
+// RouteManager Events
+const eventRouteChanged = new CustomEvent("route-changed", { from: 0, to: 0 })
 
 // Setup the main router
 const router = createRouter({
@@ -40,5 +42,12 @@ for (const i in jsonRoutes) {
     meta: { id: parseInt(i, 10) }
   })
 }
+
+// Handle "route-changed" event
+router.beforeEach((to, from) => {
+  eventRouteChanged.from = from.meta.id
+  eventRouteChanged.to = to.meta.id
+  routeManager.dispatchEvent(eventRouteChanged)
+})
 
 export default router

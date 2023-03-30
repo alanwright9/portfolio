@@ -13,8 +13,7 @@
 </template>
 
 <script>
-import StringHelper from '@/scripts/stringhelper'
-import RouterDefaults from '@/scripts/routerdefaults'
+import { StringHelper, routeManager, RouterDefaults } from '@/scripts'
 
 const defaultTransition = "fade-in"
 const navTransition = "slide"
@@ -37,25 +36,26 @@ export default {
   mounted() {
     this.calculateHeaderHeight()
     window.addEventListener('resize', this.calculateHeaderHeight);
+    routeManager.addEventListener('route-changed', this.onRouteChanged)
   },
 
   unmounted() {
     window.removeEventListener('resize', this.calculateHeaderHeight);
+    routeManager.removeEventListener('route-changed', this.onRouteChanged)
   },
 
   methods: {
+
     calculateHeaderHeight() {
       this.headerHeight = document.getElementsByTagName("header")[0].offsetHeight
+    },
+
+    onRouteChanged(event) {
+      this.lastScroll = window.scrollY
+      this.transitionName = event.from == undefined ? defaultTransition : navTransition
+      this.transitionDirection = event.to > event.from ? 1 : -1
     }
   },
-
-  watch: {
-    $route(to, from) {
-      this.lastScroll = window.scrollY
-      this.transitionName = from.meta.id == undefined ? defaultTransition : navTransition
-      this.transitionDirection = to.meta.id > from.meta.id ? 1 : -1
-    }
-  }
 }
 </script>
 

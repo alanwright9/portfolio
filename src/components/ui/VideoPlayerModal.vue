@@ -15,7 +15,7 @@
 
 <script>
 import VideoPlayer from './VideoPlayer.vue'
-import assetURL from '@/scripts/asseturl'
+import { assetURL } from '@/scripts'
 import { ref } from 'vue'
 
 export default {

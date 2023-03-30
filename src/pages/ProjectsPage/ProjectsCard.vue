@@ -12,21 +12,19 @@
       </div>
 
       <div class="card-footer">
-        <div class="container-fluid">
-          <div class="row g-3 mb-3">
-            <div class="col-auto" v-for="button in data.buttons">
-              <div class="tech-btn-border">
-                <a v-if="button.type === 'link'"
-                  :href="button.url" class="btn tech-btn btn-secondary px-4" target="_blank">
-                  {{ button.label }}
-                </a>
-                <a v-else-if="button.type === 'video'"
-                  href="#" class="btn tech-btn btn-secondary px-4"
-                  data-bs-toggle="modal" data-bs-target="#videoPlayer"
-                  :data-url="button.url">
-                  {{ button.label }}
-                </a>
-              </div>
+        <div class="row g-3 mb-3">
+          <div class="col-auto" v-for="button in data.buttons">
+            <div class="tech-btn-border">
+              <a v-if="button.type === 'link'"
+                :href="button.url" class="btn tech-btn btn-secondary px-4" target="_blank">
+                {{ button.label }}
+              </a>
+              <a v-else-if="button.type === 'video'"
+                href="#" class="btn tech-btn btn-secondary px-4"
+                data-bs-toggle="modal" data-bs-target="#videoPlayer"
+                :data-url="button.url">
+                {{ button.label }}
+              </a>
             </div>
           </div>
         </div>
@@ -38,7 +36,7 @@
 
 <script>
 import CardList from './ProjectsCardList.vue'
-import assetURL from '@/scripts/asseturl'
+import { assetURL } from '@/scripts'
 
 export default {
 

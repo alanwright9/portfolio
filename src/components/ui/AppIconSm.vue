@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import assetURL from '@/scripts/asseturl'
+import { assetURL } from '@/scripts'
 
 export default {
   props: {

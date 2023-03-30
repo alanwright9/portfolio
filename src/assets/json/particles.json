@@ -13,7 +13,7 @@
         "enable": true,
         "area": 800
       },
-      "value": 25
+      "value": 15
     },
     "color": {
       "value": "#20203a"
@@ -22,7 +22,7 @@
       "type": "square"
     },
     "opacity": {
-      "value": { "min": 0.1, "max": 0.6 }
+      "value": { "min": 0.1, "max": 0.8 }
     },
     "size": {
       "value": { "min": 30, "max": 150 }
