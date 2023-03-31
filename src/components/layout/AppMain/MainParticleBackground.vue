@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { assetURL, routeManager } from '@/scripts'
+import { assetURL, routeManager, StringHelper } from '@/scripts'
 import { loadFull } from 'tsparticles'
 import { gsap } from 'gsap'
 import { ref } from 'vue'
@@ -65,7 +65,9 @@ export default {
   methods: {
 
     onWindowScroll() {
-      this.axisY.velocity += (this.lastScroll - (this.lastScroll = window.scrollY)) * verticalScrollFactor
+      if (this.lastScroll != window.scrollY) {
+        this.axisY.velocity += (this.lastScroll - (this.lastScroll = window.scrollY)) * verticalScrollFactor
+      }
     },
 
     onRouteChanged(event) {
@@ -103,7 +105,8 @@ export default {
 #tsparticles {
   position: fixed;
   z-index: -1;
-
+  width: 100vw;
+  height: 100vh;
   animation-name: particle-entry;
   animation-duration: 1s;
 }

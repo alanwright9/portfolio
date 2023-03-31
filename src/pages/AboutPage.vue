@@ -1,7 +1,7 @@
 <template>
-  <PageContainer>
-    <PageHeading>About</PageHeading>
-    <PageParagraph>
+  <PageBody>
+    <PageH>Overview</PageH>
+    <PageP>
       This page is currently under construction.<br>
       For now, check out my
       <a class="text-decoration-underline"
@@ -9,10 +9,10 @@
           target="_blank">
         Web Developer Resume
       </a>
-    </PageParagraph>
-  </PageContainer>
+    </PageP>
+  </PageBody>
 </template>
 
 <script setup>
-import { PageContainer, PageHeading, PageParagraph } from '@/components/page'
+import { PageBody, PageH, PageP } from '@/components/page'
 </script>

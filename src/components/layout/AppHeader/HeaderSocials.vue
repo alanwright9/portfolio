@@ -7,6 +7,6 @@
 </template>
 
 <script setup>
-import AppIconSm from '../../ui/AppIconSm.vue'
+import { AppIconSm } from '@/components/ui'
 import jsonSocials from '@/assets/json/social-links.json'
 </script>

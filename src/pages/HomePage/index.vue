@@ -1,16 +1,18 @@
 <template>
-  <PageContainer>
+  <PageBody>
     <HomeTitle>Welcome! <span class="text-nowrap">I'm Alan</span></HomeTitle>
     <HomeSubtitle>I specialize in Front-End Web Development using Vue.js</HomeSubtitle>
-    <hr class="m-4 m-md-5">
-    <PageRightAlign>
+    <PageHR/>
+    <PageRAlign>
       <AppButtonLg to="/projects" label="Check out my projects!"/>
-    </PageRightAlign>
-  </PageContainer>
+    </PageRAlign>
+  </PageBody>
 </template>
 
 <script setup>
-import { PageContainer, PageRightAlign } from '@/components/page'
-import { HomeTitle, HomeSubtitle } from '.'
-import AppButtonLg from '@/components/ui/AppButtonLg.vue'
+import { PageBody, PageRAlign, PageHR } from '@/components/page'
+import { AppButtonLg }                  from '@/components/ui'
+
+import HomeTitle    from './HomeTitle.vue'
+import HomeSubtitle from './HomeSubtitle.vue'
 </script>

@@ -1,6 +1,6 @@
 {
   "backgroundMode": {
-    "enable": true
+    "enable": false
   },
   "fpsLimit": 120,
   "detectRetina": false,
@@ -22,10 +22,10 @@
       "type": "square"
     },
     "opacity": {
-      "value": { "min": 0.1, "max": 0.8 }
+      "value": { "min": 0.1, "max": 0.2 }
     },
     "size": {
-      "value": { "min": 30, "max": 150 }
+      "value": { "min": 150, "max": 450 }
     },
     "move": {
       "enable": true,

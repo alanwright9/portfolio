@@ -1,6 +1,7 @@
-import PageContainer from './PageContainer.vue'
-import PageHeading from './PageHeading.vue'
-import PageParagraph from './PageParagraph.vue'
-import PageRightAlign from './PageRightAlign.vue'
+import PageBody from './PageBody.vue'
+import PageH from './PageH.vue'
+import PageP from './PageP.vue'
+import PageHR from './PageHR.vue'
+import PageRAlign from './PageRAlign.vue'
 
-export { PageContainer, PageHeading, PageParagraph, PageRightAlign }
+export { PageBody, PageH, PageP, PageHR, PageRAlign }

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <MainBackground/>
-    <MainRouteManager/>
+    <MainParticleBackground/>
+    <MainRouterView/>
     <VideoPlayerModal name="videoPlayer"/>
   </div>
 </template>
 
 <script setup>
-import MainBackground from './MainBackground.vue'
-import MainRouteManager from './MainRouteManager.vue'
-import VideoPlayerModal from '@/components/ui/VideoPlayerModal.vue'
+import MainParticleBackground from './MainParticleBackground.vue'
+import MainRouterView from './MainRouterView.vue'
+import { VideoPlayerModal } from '@/components/ui'
 </script>

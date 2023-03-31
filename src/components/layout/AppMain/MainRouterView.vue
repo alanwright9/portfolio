@@ -104,7 +104,7 @@ export default {
 
 .slide-enter-from {
   transform:
-    translateX(calc(25% * v-bind(transitionDirection)))
+    translateX(calc(55% * v-bind(transitionDirection)))
     translateY(v-bind("StringHelper.toCSSpx(-lastScroll)"))
     scale(50%) rotateZ(calc(15deg * v-bind(transitionDirection)));
 }
