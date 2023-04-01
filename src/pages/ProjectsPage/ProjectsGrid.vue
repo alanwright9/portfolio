@@ -1,14 +1,14 @@
 <template>
-  <!--xl will be 3 when more projects are added...-->
-  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 g-5">
-    <div class="col d-flex" v-for="project in jsonProjects">
+  <!-- size-lg will be 3 when more projects are added... -->
+  <PageGrid size="1" size-md="2" size-lg="2">
+    <PageGridItem v-for="project in jsonProjects">
       <ProjectsCard :data="project"/>
-    </div>
-  </div>
-  <div style="height: 25vh" />
+    </PageGridItem>
+  </PageGrid>
 </template>
 
 <script setup>
+import { PageGrid, PageGridItem } from '@/components/page'
 import ProjectsCard from './ProjectsCard.vue'
 import jsonProjects from '@/assets/json/projects.json'
 </script>

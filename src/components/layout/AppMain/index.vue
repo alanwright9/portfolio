@@ -3,6 +3,7 @@
     <MainParticleBackground/>
     <MainRouterView/>
     <VideoPlayerModal name="videoPlayer"/>
+    <div style="height: 25vh" />
   </div>
 </template>
 
