@@ -10,5 +10,5 @@
 <script setup>
 import MainParticleBackground from './MainParticleBackground.vue'
 import MainRouterView from './MainRouterView.vue'
-import { VideoPlayerModal } from '@/components/ui'
+import { VideoPlayerModal } from '@ui'
 </script>

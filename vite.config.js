@@ -1,8 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
 import jsonPages from './src/router/routes.json'
 
 const pages = []
@@ -13,11 +11,12 @@ for (const i in jsonPages) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/vue-portfolio/',
+  base: '/portfolio/',
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@ui': fileURLToPath(new URL('./src/components/ui', import.meta.url))
     },
     extensions: ['.js', '.json', '.vue']
   },

@@ -1,14 +1,10 @@
 <template>
-  <div v-if="true">
   <div :class="`row ${defaultSize()}${mediumSize()}${largeSize()} g-5`">
     <slot/>
   </div>
-</div>
 </template>
 
 <script>
-import { collisionVelocity } from 'tsparticles-engine'
-
 export default {
   props: {
     'size': {

@@ -4,16 +4,11 @@
 
       <div class="position-relative">
         <div class="title-bg position-absolute end-0 p-2 ps-4 text-end">
-          <h5 class="card-title">{{ data.title }}</h5>
+          <h5 class="card-title mx-2">{{ data.title }}</h5>
         </div>
         <div class="position-absolute bottom-0">
           <div class="row g-4 p-3">
-            <div class="col" v-for="button in data.buttons">
-              <ProjectsCardButton v-if="button.type === 'source'" image="github"
-                :url="button.url" target="_blank" />
-              <ProjectsCardButton v-if="button.type === 'video'" image="play-btn"
-                data-bs-toggle="modal" data-bs-target="#videoPlayer" :data-url="button.url" />
-            </div>
+            <ProjectsCardButton v-for="button in data.buttons" :data="button" />
           </div>
         </div>
         <img :src="assetURL(data.image, 'img/projects')" class="card-img-top" :alt="data.image">
@@ -52,11 +47,10 @@ export default {
 </script>
 
 <style scoped>
-
 .title-bg {
   --shape: polygon(0 0, 100% 0, 100% 100%, 1rem 100%);
+  -webkit-clip-path: var(--shape);
   clip-path: var(--shape);
   background-color: #000000a0;
 }
-
 </style>

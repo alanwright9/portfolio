@@ -10,8 +10,7 @@
 </template>
 
 <script setup>
-import { PageBody, PageRAlign, PageHR } from '@/components/page'
-import { AppButtonLg }                  from '@/components/ui'
+import { AppButtonLg }                  from '@ui'
 
 import HomeTitle    from './HomeTitle.vue'
 import HomeSubtitle from './HomeSubtitle.vue'

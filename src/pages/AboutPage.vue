@@ -12,7 +12,3 @@
     </PageP>
   </PageBody>
 </template>
-
-<script setup>
-import { PageBody, PageH, PageP } from '@/components/page'
-</script>

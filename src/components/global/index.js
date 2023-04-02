@@ -5,6 +5,6 @@ import PageBodyP from './PageBodyP.vue'
 import PageHR from './PageHR.vue'
 import PageRAlign from './PageRAlign.vue'
 import PageGrid from './PageGrid.vue'
-import PageGridItem from './PageGridItem.vue'
+import PageCol from './PageCol.vue'
 
-export { PageBody, PageH, PageP, PageBodyP, PageHR, PageRAlign, PageGrid, PageGridItem }
+export { PageBody, PageH, PageP, PageBodyP, PageHR, PageRAlign, PageGrid, PageCol }

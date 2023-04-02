@@ -7,6 +7,6 @@
 </template>
 
 <script setup>
-import { AppIconSm } from '@/components/ui'
+import { AppIconSm } from '@ui'
 import jsonSocials from '@/assets/json/social-links.json'
 </script>

@@ -6,11 +6,15 @@
       along with general programming and 2D animation. Each card contains a brief description
       of the project with a link to the source code and/or demonstration. Feel free to check them out!
     </PageBodyP>
-    <ProjectsGrid/>
+    <PageGrid size="1" size-md="2" size-lg="2">
+      <PageCol v-for="project in jsonProjects">
+        <ProjectsCard :data="project"/>
+      </PageCol>
+    </PageGrid>
   </PageBody>
 </template>
 
 <script setup>
-import { PageBody, PageH, PageBodyP } from '@/components/page'
-import ProjectsGrid from './ProjectsGrid.vue'
+import ProjectsCard from './ProjectsCard.vue'
+import jsonProjects from '@/assets/json/projects.json'
 </script>

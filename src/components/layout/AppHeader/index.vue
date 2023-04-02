@@ -30,7 +30,7 @@ import HeaderRouteList  from './HeaderRouteList.vue'
 import HeaderSocials    from './HeaderSocials.vue'
 import HeaderMobileNav  from './HeaderMobileNav.vue'
 
-import { AppIconSm } from '@/components/ui'
+import { AppIconSm } from '@ui'
 </script>
 
 <style scoped>
