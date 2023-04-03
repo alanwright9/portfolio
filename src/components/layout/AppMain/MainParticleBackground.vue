@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { assetURL, routeManager, StringHelper } from '@/scripts'
+import { assetURL, routeManager } from '@/scripts'
 import { loadFull } from 'tsparticles'
 import { gsap } from 'gsap'
 import { ref } from 'vue'
@@ -49,7 +49,7 @@ export default {
   }),
 
   setup: () => ({
-    particlesURL : assetURL("particles.json", "json")
+    particlesURL : assetURL("particles.json", "json"),
   }),
 
   mounted() {
