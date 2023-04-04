@@ -36,5 +36,13 @@
         "url": "alan9.mp4"
       }
     ]
+  },
+  {
+    "image": "portfolio.png",
+    "title": "WIP: backend project",
+    "skills": [
+      "Vue.js", "HTML", "CSS", "NodeJS", "Express"
+    ],
+    "description": "Work in progress."
   }
 ]

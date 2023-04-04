@@ -1,8 +1,8 @@
 <template>
   <PageBody>
     <PageH>Contact Info</PageH>
-    <PageGrid size="1" size-md="2">
-      <PageCol>
+    <div class="row row-cols-1 row-cols-md-2">
+      <div class="col">
         <PageP>
           This page is currently under construciton and will feature a full contact form.
           For now, here is my business email address.
@@ -10,11 +10,11 @@
         <PageP>
           Contact me at: techtress (dot) alan (at) gmail (dot) com
         </PageP>
-      </PageCol>
-      <PageCol>
+      </div>
+      <div class="col">
         <ContactMeForm/>
-      </PageCol>
-    </PageGrid>
+      </div>
+    </div>
   </PageBody>
 </template>
 

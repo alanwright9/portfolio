@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { StringHelper, routeManager, RouterDefaults } from '@/scripts'
+import { StringHelper } from '@/scripts'
+import { useRouterStore } from '@/store/routerStore'
 
 const defaultTransition = "fade-in"
 const navTransition = "slide"
@@ -22,38 +23,42 @@ export default {
   data: () => ({
     transitionName: defaultTransition,
     transitionDirection: 1,
-    headerHeight: 0,
     lastScroll: 0,
-    cssFadeTime: StringHelper.toCSSs(1),
-    cssSlideTime: StringHelper.toCSSs(RouterDefaults.transition)
+    headerHeight: 0
   }),
 
   setup: () => ({
-    StringHelper,
-    RouterDefaults
+    routerStore: useRouterStore()
   }),
 
   mounted() {
+    this.headerElem = document.getElementsByTagName("header")[0]
     this.calculateHeaderHeight()
-    window.addEventListener('resize', this.calculateHeaderHeight);
-    routeManager.addEventListener('route-changed', this.onRouteChanged)
+    window.addEventListener("resize", this.calculateHeaderHeight)
   },
 
   unmounted() {
-    window.removeEventListener('resize', this.calculateHeaderHeight);
-    routeManager.removeEventListener('route-changed', this.onRouteChanged)
+    window.removeEventListener("resize", this.calculateHeaderHeight)
   },
 
   methods: {
-
     calculateHeaderHeight() {
-      this.headerHeight = document.getElementsByTagName("header")[0].offsetHeight
-    },
+      this.headerHeight = this.headerElem.offsetHeight
+    }
+  },
 
-    onRouteChanged(event) {
+  computed: {
+    cssLastScroll: (vm) => StringHelper.toCSSpx(vm.lastScroll),
+    cssHeaderHeight: (vm) => StringHelper.toCSSpx(vm.headerHeight),
+    cssFadeInTime: (vm) => StringHelper.toCSSs(vm.routerStore.fadeIn),
+    cssSlideTime: (vm) => StringHelper.toCSSs(vm.routerStore.transition)
+  },
+
+  watch: {
+    'routerStore.routeId'(to, from) {
       this.lastScroll = window.scrollY
-      this.transitionName = event.from == undefined ? defaultTransition : navTransition
-      this.transitionDirection = event.to > event.from ? 1 : -1
+      this.transitionName = from == undefined ? defaultTransition : navTransition
+      this.transitionDirection = to > from ? 1 : -1
     }
   },
 }
@@ -66,7 +71,7 @@ export default {
   overflow-x: hidden;
 
   display: grid;
-  padding-top: v-bind("StringHelper.toCSSpx(headerHeight)");
+  padding-top: v-bind(cssHeaderHeight);
 }
 
 .view {
@@ -82,7 +87,7 @@ export default {
 }
 
 .fade-in-enter-active {
-  transition: opacity v-bind(cssFadeTime) ease-out;
+  transition: opacity v-bind(cssFadeInTime) ease-out;
 }
 
 .slide-enter-active,
@@ -98,20 +103,20 @@ export default {
   transform-origin: 50% min(50%, 50vh);
 }
 .slide-leave-active {
-  top: v-bind("StringHelper.toCSSpx(headerHeight-lastScroll)");
-  transform-origin: 50% calc(v-bind("StringHelper.toCSSpx(lastScroll)") + 50vh);
+  top: calc(v-bind(cssHeaderHeight) - v-bind(cssLastScroll));
+  transform-origin: 50% calc(v-bind(cssLastScroll) + 50vh);
 }
 
 .slide-enter-from {
   transform:
     translateX(calc(55% * v-bind(transitionDirection)))
-    translateY(v-bind("StringHelper.toCSSpx(-lastScroll)"))
+    translateY(calc(0px - v-bind(cssLastScroll)))
     scale(50%) rotateZ(calc(15deg * v-bind(transitionDirection)));
 }
 .slide-leave-to {
   transform:
     translateX(calc(-50% * v-bind(transitionDirection)))
-    translateY(v-bind("StringHelper.toCSSpx(lastScroll)"))
+    translateY(v-bind(cssLastScroll))
     scale(200%) rotateZ(calc(-15deg * v-bind(transitionDirection)));
   filter: blur(16px);
 }

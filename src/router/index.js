@@ -1,9 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { StringHelper, routeManager, RouterDefaults } from '@/scripts'
+import { StringHelper } from '@/scripts'
+import { useRouterStore } from '@/store/routerStore'
 import jsonRoutes from './routes.json'
-
-// RouteManager Events
-const eventRouteChanged = new CustomEvent("route-changed", { from: 0, to: 0 })
 
 // Setup the main router
 const router = createRouter({
@@ -22,7 +20,7 @@ const router = createRouter({
         // scroll to top once specified transition converted from s to ms is finished
         setTimeout(() => {
           resolve({ left: 0, top: 0, behavior: "instant" })
-        }, RouterDefaults.transition * 1000)
+        }, useRouterStore().transition * 1000)
       })
     }
   }
@@ -42,12 +40,5 @@ for (const i in jsonRoutes) {
     meta: { id: parseInt(i, 10) }
   })
 }
-
-// Handle "route-changed" event
-router.beforeEach((to, from) => {
-  eventRouteChanged.from = from.meta.id
-  eventRouteChanged.to = to.meta.id
-  routeManager.dispatchEvent(eventRouteChanged)
-})
 
 export default router

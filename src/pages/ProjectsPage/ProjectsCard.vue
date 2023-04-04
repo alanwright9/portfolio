@@ -53,4 +53,5 @@ export default {
   clip-path: var(--shape);
   background-color: #000000a0;
 }
+
 </style>

@@ -8,7 +8,8 @@
 </template>
 
 <script>
-import { assetURL, routeManager } from '@/scripts'
+import { assetURL, StringHelper } from '@/scripts'
+import { useRouterStore } from '@/store/routerStore'
 import { loadFull } from 'tsparticles'
 import { gsap } from 'gsap'
 import { ref } from 'vue'
@@ -19,23 +20,19 @@ const horizontalSpeed       = 50
 const verticalScrollFactor  = 0.05
 const verticalScrollDelay   = 100
 
-const newAxis = () => ({
+const flyAxis = () => ({
 
   _tween: ref(null),
-  _velocity: 0.0,
+  velocity: 0.0,
 
-  get velocity() {
-    return this._velocity
-  },
-
-  set velocity(value) {
-    this._velocity = value
+  setVelocity(value) {
+    this.velocity = value
     if (this._tween) {
       this._tween.invalidate()
       this._tween.restart()
     }
     else {
-      this._tween = gsap.to(this, {_velocity: 0.0, duration: particleFlyDuration, overwrite: true})
+      this._tween = gsap.to(this, {velocity: 0.0, duration: particleFlyDuration, overwrite: true})
     }
   }
 })
@@ -43,36 +40,41 @@ const newAxis = () => ({
 export default {
 
   data: () => ({
-    axisX: newAxis(),
-    axisY: newAxis(),
+    axisX: flyAxis(),
+    axisY: flyAxis(),
     lastScroll: 0
   }),
 
   setup: () => ({
     particlesURL : assetURL("particles.json", "json"),
+    routerStore: useRouterStore()
   }),
 
   mounted() {
     window.addEventListener("scroll", throttle(this.onWindowScroll, verticalScrollDelay))
-    routeManager.addEventListener("route-changed", this.onRouteChanged)
   },
 
   unmounted() {
     window.removeEventListener("scroll", throttle(this.onWindowScroll, verticalScrollDelay))
-    routeManager.removeEventListener("route-changed", this.onRouteChanged)
+  },
+
+  computed: {
+    cssFadeInTime: (vm) => StringHelper.toCSSs(vm.routerStore.fadeIn)
+  },
+
+  watch: {
+    'routerStore.routeId' (to, from) {
+      if (from != undefined && to != from) {
+        this.axisX.setVelocity((from - to) * horizontalSpeed)
+      }
+    }
   },
 
   methods: {
 
     onWindowScroll() {
       if (this.lastScroll != window.scrollY) {
-        this.axisY.velocity += (this.lastScroll - (this.lastScroll = window.scrollY)) * verticalScrollFactor
-      }
-    },
-
-    onRouteChanged(event) {
-      if (event.to != event.from) {
-        this.axisX.velocity = (event.from - event.to) * horizontalSpeed
+        this.axisY.setVelocity(this.axisY.velocity + (this.lastScroll - (this.lastScroll = window.scrollY)) * verticalScrollFactor)
       }
     },
 
@@ -108,7 +110,7 @@ export default {
   width: 100vw;
   height: 100vh;
   animation-name: particle-entry;
-  animation-duration: 1s;
+  animation-duration: v-bind(cssFadeInTime);
 }
 
 @keyframes particle-entry {
