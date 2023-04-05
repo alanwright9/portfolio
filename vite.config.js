@@ -20,7 +20,7 @@ export default defineConfig({
     },
     extensions: ['.js', '.json', '.vue']
   },
-  build: {
+  /*build: {
     rollupOptions: {
       output: {
         manualChunks: {
@@ -28,5 +28,5 @@ export default defineConfig({
         }
       }
     }
-  }
+  }*/
 })

@@ -6,10 +6,8 @@
         <div class="title-bg position-absolute end-0 p-2 ps-4 text-end">
           <h5 class="card-title mx-2">{{ data.title }}</h5>
         </div>
-        <div class="position-absolute bottom-0">
-          <div class="row g-4 p-3">
-            <ProjectsCardButton v-for="button in data.buttons" :data="button" />
-          </div>
+        <div class="position-absolute bottom-0 row g-4 p-3">
+          <ProjectsCardButton v-for="button in data.buttons" :data="button" />
         </div>
         <img :src="assetURL(data.image, 'img/projects')" class="card-img-top" :alt="data.image">
       </div>

@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import Particles from "vue3-particles"
 import * as Globals from '@/components/global'
+import { useProjectsStore } from '@/store/projects'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
@@ -18,3 +19,5 @@ app.use(pinia).use(router).use(Particles).mount('#app')
 for (const globalItem in Globals) {
   app.component(globalItem, Globals[globalItem])
 }
+
+useProjectsStore().loadProjects()
